@@ -1,0 +1,88 @@
+/* Elorin - colour. Dark only; there is no light theme.
+   Golds are exact values lifted from the live site's gradient definitions.
+   Navy / grey values are sampled from the homepage screenshot (close approximations). */
+:root {
+  /* --- Navy space ---------------------------------------------------- */
+  --navy-900: #0A101E; /* page base */
+  --navy-800: #111B2E; /* surface / card */
+  --navy-700: #16223A; /* surface raised / input */
+  --navy-600: #1E2C47; /* border subtle */
+  --navy-500: #2C3E60; /* border strong */
+
+  /* --- Gold ramp (hero accent, single hue) --------------------------- */
+  --gold-100: #fff5d4; /* highlight */
+  --gold-200: #e8c885; /* bright: hover, hero text */
+  --gold-400: #c8a45a; /* mid: the workhorse - borders, buttons */
+  --gold-600: #8a6a2c; /* deep: pressed states, gradient base */
+
+  /* --- Blue ---------------------------------------------------------- */
+  --blue-400: #4A7FC1; /* accent */
+  --blue-300: #7FB2E5; /* link */
+  --blue-discord: #2B4C86;
+
+  /* --- Ink ----------------------------------------------------------- */
+  --grey-100: #E8EDF5; /* primary text */
+  --grey-300: #A4B3C9; /* secondary text */
+  --grey-500: #7D8CA6; /* muted - labels and metadata. 5.06:1 on the card surface */
+
+  /* --- Semantic hues ------------------------------------------------- */
+  --green-500: #5FA86B;
+  --amber-500: #C99A3A;
+  --red-500: #B4543F;    /* BORDERS AND FILLS ONLY - 3.51:1, fails as text */
+  --red-300: #D97A63;    /* the text-safe danger tone - 5.67:1 on the card surface */
+
+  /* --- White veils (bevels, zebra rows, inner highlights) ------------ */
+  --veil-2: rgba(255, 255, 255, 0.02);
+  --veil-4: rgba(255, 255, 255, 0.04);
+  --veil-6: rgba(255, 255, 255, 0.06);
+  --veil-10: rgba(255, 255, 255, 0.10);
+
+  /* ================= semantic aliases (use these) =================== */
+  --bg-page: var(--navy-900);
+  --surface-card: var(--navy-800);
+  --surface-raised: var(--navy-700);
+  --surface-sunken: #070C16;
+
+  --border-subtle: var(--navy-600);
+  --border-strong: var(--navy-500);
+  --border-gold: var(--gold-400);
+  --border-gold-soft: rgba(200, 164, 90, 0.32);
+  --bevel-inner: var(--veil-4);
+
+  --text-primary: var(--grey-100);
+  --text-secondary: var(--grey-300);
+  --text-muted: var(--grey-500);
+  /* Completed / dimmed sentences - 5.3:1 on the card surface, unlike --text-muted */
+  --text-dim: #8B99AF;
+  --text-gold: var(--gold-200);
+  --text-on-gold: var(--navy-900);
+  --text-danger: var(--red-300);
+  --text-link: var(--blue-300);
+  --text-link-hover: var(--gold-200);
+
+  --accent: var(--gold-400);
+  --accent-hover: var(--gold-200);
+  --accent-press: var(--gold-600);
+
+  --state-success: var(--green-500);
+  --state-warning: var(--amber-500);
+  /* --state-* are border and fill tones. For danger *text* use --text-danger. */
+  --state-danger: var(--red-500);
+  --state-info: var(--blue-400);
+  --state-tip: var(--gold-400);
+
+  --focus-ring: var(--gold-200);
+
+  /* Item rarity - drop-table cells and item chips */
+  --rarity-common: var(--grey-300);
+  --rarity-uncommon: var(--green-500);
+  --rarity-rare: var(--blue-300);
+  --rarity-very-rare: #B07BD8;
+  --rarity-mega-rare: var(--gold-200);
+
+  /* Difficulty */
+  --diff-easy: var(--green-500);
+  --diff-medium: var(--amber-500);
+  --diff-hard: var(--red-500);
+  --diff-elite: #B07BD8;
+}

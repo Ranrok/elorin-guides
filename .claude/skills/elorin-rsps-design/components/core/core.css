@@ -1,0 +1,56 @@
+/* Elorin - core: icon, button, tag, badge */
+
+/* Icon: Lucide (CDN, static SVG) painted with currentColor via CSS mask,
+   so a glyph inherits its parent's colour with no JS and no inline SVG. */
+.el-icon { display: inline-block; width: 1em; height: 1em; flex: none; background-color: currentColor; -webkit-mask-position: center; mask-position: center; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-size: contain; mask-size: contain; }
+
+/* ---------- Button ---------- */
+.el-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-3); min-height: var(--control-h); padding: 0 var(--space-6); border: 1px solid transparent; border-radius: var(--radius-button); background: none; font-family: var(--font-display); font-size: 14px; font-weight: var(--fw-display); letter-spacing: 0.14em; line-height: 1; color: var(--text-primary); cursor: pointer; text-decoration: none; transition: var(--transition-colors); }
+.el-btn--sm { min-height: var(--control-h-sm); padding: 0 var(--space-4); font-size: 12.5px; }
+.el-btn--lg { min-height: var(--control-h-lg); padding: 0 var(--space-8); font-size: 15px; }
+.el-btn--block { width: 100%; }
+.el-btn__flourish { width: 6px; height: 6px; flex: none; background: currentColor; opacity: 0.5; transform: rotate(45deg); }
+.el-btn .el-icon { font-size: 16px; }
+
+.el-btn--primary { background-image: var(--grad-gold-button); border-color: #d9b671; color: var(--text-on-gold); box-shadow: var(--bevel-strong), 0 0 18px -6px rgba(200, 164, 90, 0.45); }
+.el-btn--primary:hover { background-image: var(--grad-gold-button-hover); border-color: var(--gold-100); box-shadow: var(--bevel-strong), var(--glow-gold-strong); }
+.el-btn--primary:active { background-image: var(--grad-gold-button-press); box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.35); }
+
+.el-btn--secondary { background-image: var(--grad-navy-button); border-color: var(--blue-400); color: var(--text-primary); box-shadow: var(--bevel); }
+.el-btn--secondary:hover { border-color: var(--blue-300); background-color: var(--navy-500); color: #fff; }
+.el-btn--secondary:active { background-image: none; background-color: #14203a; }
+
+.el-btn--discord { background-color: var(--blue-discord); background-image: var(--grad-raised); border-color: #3d63a6; color: #fff; box-shadow: var(--bevel); }
+.el-btn--discord:hover { background-color: #33589a; border-color: var(--blue-300); }
+
+.el-btn--ghost { color: var(--text-gold); padding-inline: var(--space-2); }
+.el-btn--ghost:hover { color: var(--gold-100); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+
+.el-btn--outline { border-color: var(--border-strong); color: var(--text-secondary); background-image: var(--grad-card); }
+.el-btn--outline:hover { border-color: var(--border-gold); color: var(--text-gold); }
+
+.el-btn:disabled, .el-btn[aria-disabled="true"] { opacity: 0.42; cursor: not-allowed; box-shadow: none; }
+.el-btn:disabled:hover, .el-btn[aria-disabled="true"]:hover { background-image: inherit; }
+
+/* ---------- Tag (pill - rarity, skill, meta) ---------- */
+.el-tag { display: inline-flex; align-items: center; gap: 6px; min-height: 22px; padding: 2px 10px; border: 1px solid var(--border-strong); border-radius: var(--radius-pill); background: var(--surface-raised); font-family: var(--font-mono); font-size: var(--fs-label-sm); font-weight: var(--fw-body-medium); letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); white-space: nowrap; }
+.el-tag .el-icon { font-size: 12px; }
+.el-tag__dot { width: 5px; height: 5px; flex: none; transform: rotate(45deg); background: currentColor; }
+.el-tag--gold { color: var(--gold-200); border-color: var(--border-gold-soft); background: rgba(200, 164, 90, 0.10); }
+.el-tag--blue { color: var(--blue-300); border-color: rgba(74, 127, 193, 0.45); background: rgba(74, 127, 193, 0.10); }
+.el-tag--common { color: var(--rarity-common); }
+.el-tag--uncommon { color: var(--rarity-uncommon); border-color: rgba(95, 168, 107, 0.45); background: rgba(95, 168, 107, 0.10); }
+.el-tag--rare { color: var(--rarity-rare); border-color: rgba(127, 178, 229, 0.45); background: rgba(127, 178, 229, 0.10); }
+.el-tag--very-rare { color: var(--rarity-very-rare); border-color: rgba(176, 123, 216, 0.45); background: rgba(176, 123, 216, 0.10); }
+.el-tag--mega-rare { color: var(--rarity-mega-rare); border-color: var(--border-gold-soft); background: rgba(232, 200, 133, 0.12); }
+
+/* ---------- Badge (2px chip - difficulty, level req, counts) ---------- */
+.el-badge { display: inline-flex; align-items: center; gap: 6px; min-height: 20px; padding: 2px 8px; border: 1px solid var(--border-strong); border-radius: var(--radius-chip); background: var(--surface-raised); font-family: var(--font-mono); font-size: var(--fs-label-sm); letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); white-space: nowrap; }
+.el-badge__bar { width: 3px; align-self: stretch; margin: -2px 2px -2px -4px; background: currentColor; }
+.el-badge--easy { color: var(--diff-easy); }
+.el-badge--medium { color: var(--diff-medium); }
+.el-badge--hard { color: var(--diff-hard); }
+.el-badge--elite { color: var(--diff-elite); }
+.el-badge--gold { color: var(--gold-200); border-color: var(--border-gold-soft); }
+.el-badge--skill { color: var(--text-primary); }
+.el-badge--skill .el-badge__lvl { color: var(--gold-200); }

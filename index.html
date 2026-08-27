@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day one roadmap - Elorin RSPS</title>
+<meta name="description" content="A day one roadmap for Elorin RSPS. Tick things off as you go; progress saves on your own device.">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/elorin.css">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<div class="el-ridge" aria-hidden="true"></div>
+
+<div class="page-root">
+
+  <header class="el-header">
+    <div class="el-header__inner">
+      <a class="el-lockup" href="index.html">
+        <img src="assets/elorin-logo.png" alt="Elorin">
+        <span class="el-lockup__word">Elorin RSPS</span>
+      </a>
+      <nav class="el-nav el-header__nav" aria-label="Primary">
+        <a class="el-nav__link" href="index.html" aria-current="page">Roadmap</a>
+        <a class="el-nav__link" href="tips.html">Tips</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="el-phead">
+    <div class="el-phead__inner">
+      <span class="el-phead__title">Day one</span>
+      <div class="el-phead__bar">
+        <div class="el-progress el-progress--thin">
+          <div class="el-progress__track" role="progressbar" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0" aria-label="Overall roadmap progress" data-overall-track>
+            <div class="el-progress__fill" style="width:0%" data-overall-fill></div>
+          </div>
+        </div>
+      </div>
+      <span class="el-phead__count" data-overall-count>[ 0 of 0 complete ]</span>
+      <button class="el-btn el-btn--ghost el-btn--sm" type="button" data-reset>Reset</button>
+    </div>
+  </div>
+
+  <main class="el-page">
+
+    <div class="hero">
+      <h1><span class="el-metal-silver">Day one roadmap</span></h1>
+      <p class="hero__lede">Work down the list in order. Tick things off as you go. Nothing here is timed and nothing is missable.</p>
+      <div class="hero__actions">
+        <a class="el-btn el-btn--primary" href="#section-setup">
+          <span class="el-btn__flourish"></span>
+          <span>Start the list</span>
+          <span class="el-btn__flourish"></span>
+        </a>
+        <a class="el-btn el-btn--outline" href="tips.html">Tips & tricks</a>
+      </div>
+    </div>
+
+    <div class="stack">
+      <div class="el-callout el-callout--tip">
+        <span class="el-icon el-callout__icon icon-lightbulb" aria-hidden="true"></span>
+        <div>
+          <p class="el-callout__title">Reading the chips</p>
+          <div class="el-callout__body">A coloured chip beside a step means that step also completes an achievement diary task. The chip is the diary tier, not how hard the step is.</div>
+        </div>
+      </div>
+
+      <div class="el-callout el-callout--note">
+        <span class="el-icon el-callout__icon icon-info" aria-hidden="true"></span>
+        <div>
+          <p class="el-callout__title">Note</p>
+          <div class="el-callout__body">Your ticks are saved in this browser, on this device. Clearing your browser data clears the list, and opening the page on your phone starts a fresh one.</div>
+        </div>
+      </div>
+    </div>
+
+    <noscript>
+      <div class="el-callout el-callout--warning" style="margin-top:var(--space-5)">
+        <span class="el-icon el-callout__icon icon-triangle-alert" aria-hidden="true"></span>
+        <div>
+          <p class="el-callout__title">JavaScript is off</p>
+          <div class="el-callout__body">The roadmap is built from js/roadmap-data.js on load, so the list below is empty without JavaScript. Turn it on for this page and reload.</div>
+        </div>
+      </div>
+    </noscript>
+
+    <div class="sections" data-roadmap></div>
+
+    <div class="el-rule" style="margin-top:var(--space-10)"><span class="el-diamond"></span></div>
+
+  </main>
+
+  <footer class="el-footer">
+    <div class="el-footer__inner">
+      <img src="assets/elorin-logo.png" alt="Elorin" style="height:44px">
+      <nav class="el-nav el-footer__nav" aria-label="Footer">
+        <a class="el-nav__link" href="index.html" aria-current="page">Roadmap</a>
+        <a class="el-nav__link" href="tips.html">Tips</a>
+      </nav>
+      <p class="el-footer__legal">[ not affiliated with jagex ltd ]</p>
+    </div>
+  </footer>
+
+</div>
+
+<script src="js/roadmap-data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

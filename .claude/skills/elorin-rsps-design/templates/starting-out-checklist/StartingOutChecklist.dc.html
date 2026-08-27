@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Starting Out checklist" description="Tickable player checklist page - sticky progress header, section cards, progress saved to localStorage" -->
+<helmet><script src="./ds-base.js"></script>
+<style>body{margin:0}</style>
+</helmet>
+<div ref="{{ setRoot }}" style="position:relative;min-height:100vh;background-color:#0A101E;background-image:radial-gradient(1200px 620px at 50% -8%, #17233c 0%, rgba(10,16,30,0) 68%);background-repeat:no-repeat;font-family:'Inter',system-ui,sans-serif;color:#E8EDF5">
+<sc-if value="{{ showRidge }}" hint-placeholder-val="{{ true }}"><div class="el-ridge"></div></sc-if>
+<div style="position:relative;z-index:1">
+<header class="el-header"><div class="el-header__inner">
+<a class="el-lockup" href="#"><img src="../../assets/elorin-logo.png" alt="Elorin"><span class="el-lockup__word">Elorin RSPS</span></a>
+<nav class="el-nav el-header__nav" aria-label="Primary"><a class="el-nav__link" href="#">Home</a><a class="el-nav__link" href="#" aria-current="page">Guides</a><a class="el-nav__link" href="#">Discord</a><a class="el-nav__link" href="#">Vote</a><a class="el-nav__link" href="#">Download</a></nav>
+<div class="el-header__actions"><a class="el-btn el-btn--outline el-btn--sm" href="#">Account</a></div>
+</div></header>
+<div class="el-phead"><div class="el-phead__inner">
+<span class="el-phead__title">Starting out</span>
+<div class="el-phead__bar"><div class="el-progress el-progress--thin"><div class="el-progress__track" role="progressbar" data-overall-track aria-valuemin="0" aria-valuenow="0"><div class="el-progress__fill" data-overall-fill style="width:0%"></div></div></div></div>
+<span class="el-phead__count" data-overall-count>0 complete</span>
+<button class="el-btn el-btn--ghost el-btn--sm" type="button" data-reset>Reset</button>
+</div></div>
+<main class="el-page" style="padding-top:48px;padding-bottom:64px">
+<span class="el-label">[ getting started ]</span>
+<h1 style="margin-top:12px"><span class="el-metal-silver">Starting out</span></h1>
+<p style="margin-top:20px;max-width:62ch;color:#A4B3C9;font-size:17px;line-height:1.65">Work down the list. Tick things off as you go. Progress is saved on this device, so nobody sees your list but you. Nothing here is timed and nothing is missable.</p>
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px">
+<a class="el-btn el-btn--primary" href="#step-01"><span class="el-btn__flourish"></span><span>Start the list</span><span class="el-btn__flourish"></span></a>
+<a class="el-btn el-btn--discord" href="#"><span>Join the Discord</span></a>
+</div>
+<div style="display:grid;gap:20px;margin-top:40px">
+<div class="el-callout el-callout--tip"><span class="el-callout__icon" style="width:18px;height:18px;background:currentColor;-webkit-mask:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M15%2014c.2-1%20.7-1.7%201.5-2.5%201-.9%201.5-2.2%201.5-3.5A6%206%200%200%200%206%208c0%201%20.2%202.2%201.5%203.5.7.7%201.3%201.5%201.5%202.5%22%2F%3E%3Cpath%20d%3D%22M9%2018h6%22%2F%3E%3Cpath%20d%3D%22M10%2022h4%22%2F%3E%3C%2Fsvg%3E) center/contain no-repeat;mask:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M15%2014c.2-1%20.7-1.7%201.5-2.5%201-.9%201.5-2.2%201.5-3.5A6%206%200%200%200%206%208c0%201%20.2%202.2%201.5%203.5.7.7%201.3%201.5%201.5%202.5%22%2F%3E%3Cpath%20d%3D%22M9%2018h6%22%2F%3E%3Cpath%20d%3D%22M10%2022h4%22%2F%3E%3C%2Fsvg%3E) center/contain no-repeat"></span><div><p class="el-callout__title">Tip</p><div class="el-callout__body">Bank at Edgeville. The Grand Exchange clone, the fairy ring and the Slayer master are all one click from the bank chest.</div></div></div>
+
+<section class="el-section" data-section id="step-01"><div class="el-section__head">
+<span class="el-section__label">[ Step 01 ]</span>
+<h2 class="el-section__title">First hour</h2>
+<span class="el-section__ratio" data-ratio>0/4</span>
+<p class="el-section__desc">Get off Tutorial Island and into the game proper.</p>
+<div class="el-section__bar"><div class="el-progress el-progress--thin"><div class="el-progress__track"><div class="el-progress__fill" data-fill style="width:0%"></div></div></div></div>
+</div><div class="el-section__body">
+<div class="el-check"><input class="el-check__input" type="checkbox" id="c-tutorial" data-id="tutorial"><label class="el-check__label" for="c-tutorial"><span class="el-check__title">Finish the tutorial</span></label><p class="el-check__desc">Skip it if you have played before. You keep the starter kit either way.</p></div>
+<div class="el-check"><input class="el-check__input" type="checkbox" id="c-pin" data-id="pin"><label class="el-check__label" for="c-pin"><span class="el-check__title">Set a bank PIN</span></label><p class="el-check__desc">Do it before your first trip out of Edgeville.</p></div>
+<div class="el-check"><input class="el-check__input" type="checkbox" id="c-vote" data-id="vote"><label class="el-check__label" for="c-vote"><span class="el-check__title">Vote for the first time</span></label><ul class="el-check__subs"><li><span>Claim points at the Vote shop</span></li><li><span>Buy a Vote mystery box</span></li></ul><div class="el-check__meta"><span class="el-badge el-badge--easy"><span class="el-badge__bar"></span>Easy</span></div></div>
+<div class="el-check"><input class="el-check__input" type="checkbox" id="c-teleports" data-id="teleports"><label class="el-check__label" for="c-teleports"><span class="el-check__title">Learn the teleport hub</span></label><p class="el-check__desc">Home teleport first, then the ::train and ::shops commands.</p></div>
+</div></section>
+
+<section class="el-section" data-section><div class="el-section__head">
+<span class="el-section__label">[ Step 02 ]</span>
+<h2 class="el-section__title">Gear and combat</h2>
+<span class="el-section__ratio" data-ratio>0/4</span>
+<p class="el-section__desc">Combat is pre-EOC. Rune gear carries you further here than it does on OSRS.</p>
+<div class="el-section__bar"><div class="el-progress el-progress--thin"><div class="el-progress__track"><div class="el-progress__fill" data-fill style="width:0%"></div></div></div></div>
+</div><div class="el-section__body">
+<div class="el-check"><input class="el-check__input" type="checkbox" id="c-rune" data-id="rune"><label class="el-check__label" for="c-rune"><span class="el-check__title">Buy a full rune set</span></label><div class="el-check__meta"><span class="el-badge el-badge--skill">Defence<span class="el-badge__lvl">40</span></span></div></div>
+<div class="el-check"><input class="el-check__input" type="checkbox" id="c-scimmy" data-id="scimmy"><label class="el-check__label" for="c-scimmy"><span class="el-check__title">Get a dragon scimitar and a dragon defender</span></label><p class="el-check__desc">Defender drops from the Warriors guild cyclops at 1/12.</p></div>
+<div class="el-check"><input class="el-check__input" type="checkbox" id="c-prayer" data-id="prayer"><label class="el-check__label" for="c-prayer"><span class="el-check__title">Train Prayer to 43 for Protect from Melee</span></label><ul class="el-check__subs"><li><span>Bury big bones at the Chaos Temple</span></li><li><span>Or use a gilded altar in the donator zone</span></li></ul></div>
+<div class="el-check"><input class="el-check__input" type="checkbox" id="c-slayer" data-id="slayer"><label class="el-check__label" for="c-slayer"><span class="el-check__title">Unlock your first Slayer task</span></label><div class="el-check__meta"><span class="el-badge el-badge--medium"><span class="el-badge__bar"></span>Medium</span></div></div>
+</div></section>
+
+<section class="el-section" data-section><div class="el-section__head">
+<span class="el-section__label">[ Step 03 ]</span>
+<h2 class="el-section__title">First gold</h2>
+<span class="el-section__ratio" data-ratio>0/3</span>
+<p class="el-section__desc">Methods that work from scratch with no requirements.</p>
+<div class="el-section__bar"><div class="el-progress el-progress--thin"><div class="el-progress__track"><div class="el-progress__fill" data-fill style="width:0%"></div></div></div></div>
+</div><div class="el-section__body">
+<div class="el-check"><input class="el-check__input" type="checkbox" id="c-thieve" data-id="thieve"><label class="el-check__label" for="c-thieve"><span class="el-check__title">Thieve the Ardougne stalls until 5m</span></label><p class="el-check__desc">Silk, then master farmer runs. Bring food, not armour.</p></div>
+<div class="el-check"><input class="el-check__input" type="checkbox" id="c-gwd" data-id="gwd"><label class="el-check__label" for="c-gwd"><span class="el-check__title">Open a God Wars dungeon killcount on a bandos task</span></label></div>
+<div class="el-check"><input class="el-check__input" type="checkbox" id="c-daily" data-id="daily"><label class="el-check__label" for="c-daily"><span class="el-check__title">Set a daily loop: vote, dailies, then a Slayer task</span></label></div>
+</div></section>
+
+<div class="el-callout el-callout--warning"><span class="el-callout__icon" style="width:18px;height:18px;background:currentColor;-webkit-mask:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m21.73%2018-8-14a2%202%200%200%200-3.48%200l-8%2014A2%202%200%200%200%204%2021h16a2%202%200%200%200%201.73-3%22%2F%3E%3Cpath%20d%3D%22M12%209v4%22%2F%3E%3Cpath%20d%3D%22M12%2017h.01%22%2F%3E%3C%2Fsvg%3E) center/contain no-repeat;mask:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m21.73%2018-8-14a2%202%200%200%200-3.48%200l-8%2014A2%202%200%200%200%204%2021h16a2%202%200%200%200%201.73-3%22%2F%3E%3Cpath%20d%3D%22M12%209v4%22%2F%3E%3Cpath%20d%3D%22M12%2017h.01%22%2F%3E%3C%2Fsvg%3E) center/contain no-repeat"></span><div><p class="el-callout__title">Warning</p><div class="el-callout__body">The Wilderness is live everywhere north of the ditch, Revenant caves included. Take nothing you would mind losing.</div></div></div>
+<details class="el-acc"><summary class="el-acc__summary"><span>Coming from OSRS?</span><span class="el-acc__tag">[ Optional ]</span></summary><div class="el-acc__body"><p>No EOC, no OSRS accuracy formulas. Prayer switching matters more, tick eating matters less. Drop tables follow the revision each boss came from, so read the table on the boss page rather than the OSRS wiki.</p></div></details>
+<div class="el-rule" style="margin-top:24px"><span class="el-diamond"></span></div>
+</div>
+</main>
+<footer class="el-footer"><div class="el-footer__inner">
+<img src="../../assets/elorin-logo.png" alt="Elorin" style="height:44px">
+<nav class="el-nav el-footer__nav" aria-label="Footer"><a class="el-nav__link" href="#">Guides</a><a class="el-nav__link" href="#">Discord</a><a class="el-nav__link" href="#">Vote</a><a class="el-nav__link" href="#">Rules</a></nav>
+<p class="el-footer__legal">[ not affiliated with jagex ltd ]</p>
+</div></footer>
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;storageKey&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;elorin.startingOut.v1&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Behaviour&quot;},&quot;showRidge&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behaviour&quot;}}">
+class Component extends DCLogic {
+  setRoot = (el) => { this.root = el; if (el) this.wire(); };
+  storageKey() { return this.props.storageKey || 'elorin.startingOut.v1'; }
+  componentDidMount() { this.wire(); }
+  componentDidUpdate() { this.wire(); }
+  wire() {
+    const root = this.root;
+    if (!root) return;
+    const boxes = Array.prototype.slice.call(root.querySelectorAll('[data-id]'));
+    if (!boxes.length) return;
+    let saved = {};
+    try { saved = JSON.parse(localStorage.getItem(this.storageKey())) || {}; } catch (e) { saved = {}; }
+    boxes.forEach((b) => {
+      if (saved[b.dataset.id]) b.checked = true;
+      if (!b.__elWired) {
+        b.__elWired = true;
+        b.addEventListener('change', () => { this.save(); this.paint(); });
+      }
+    });
+    const reset = root.querySelector('[data-reset]');
+    if (reset && !reset.__elWired) {
+      reset.__elWired = true;
+      reset.addEventListener('click', () => {
+        this.root.querySelectorAll('[data-id]').forEach((b) => { b.checked = false; });
+        this.save(); this.paint();
+      });
+    }
+    this.paint();
+  }
+  save() {
+    const out = {};
+    this.root.querySelectorAll('[data-id]').forEach((b) => { if (b.checked) out[b.dataset.id] = 1; });
+    try { localStorage.setItem(this.storageKey(), JSON.stringify(out)); } catch (e) {}
+  }
+  paint() {
+    const root = this.root;
+    if (!root) return;
+    let done = 0, total = 0;
+    root.querySelectorAll('[data-section]').forEach((sec) => {
+      const inputs = sec.querySelectorAll('[data-id]');
+      let n = 0;
+      inputs.forEach((i) => { if (i.checked) n += 1; });
+      done += n; total += inputs.length;
+      const ratio = sec.querySelector('[data-ratio]');
+      if (ratio) ratio.textContent = n + '/' + inputs.length;
+      const fill = sec.querySelector('[data-fill]');
+      if (fill) fill.style.width = (inputs.length ? Math.round((n / inputs.length) * 100) : 0) + '%';
+      sec.classList.toggle('el-section--complete', inputs.length > 0 && n === inputs.length);
+    });
+    const pct = total ? Math.round((done / total) * 100) : 0;
+    const oFill = root.querySelector('[data-overall-fill]');
+    if (oFill) oFill.style.width = pct + '%';
+    const oTrack = root.querySelector('[data-overall-track]');
+    if (oTrack) { oTrack.setAttribute('aria-valuenow', done); oTrack.setAttribute('aria-valuemax', total); }
+    const count = root.querySelector('[data-overall-count]');
+    if (count) count.textContent = done + ' of ' + total + ' complete \u00b7 ' + pct + '%';
+  }
+  renderVals() {
+    return {
+      setRoot: this.setRoot,
+      showRidge: this.props.showRidge !== false,
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+/* ==========================================================================
+   SITE CSS
+   --------------------------------------------------------------------------
+   Page-level composition only. Everything visual - colours, type, borders,
+   spacing values, components - comes from elorin.css and is not repeated or
+   overridden here. If you need a new colour or a new component, it belongs in
+   the design system, not in this file.
+
+   All of these rules are layout and stacking glue, built out of the design
+   system's own custom properties.
+   ========================================================================== */
+
+/* The ridge silhouette is fixed at z-index 0, so page content sits above it. */
+.page-root {
+  position: relative;
+  z-index: 1;
+}
+
+/* Page heading block. Matches the rhythm used by the design system's own
+   deliverable page. */
+.hero {
+  padding-block: var(--space-12) var(--space-8);
+}
+
+.hero h1 {
+  line-height: 1.04;
+}
+
+.hero__lede {
+  margin-top: var(--space-5);
+  max-width: var(--measure-prose);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+/* Vertical stacks on the page shell. */
+.stack {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.sections {
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-10);
+}
+
+/* Jumping to a section must not drop it behind the sticky progress header. */
+.sections .el-section {
+  scroll-margin-top: calc(var(--progress-header-h) + var(--space-4));
+}
+
+/* The active-page diamond under a nav link sits close enough to the type that
+   it reads as part of the word. Drop it to the bottom of the link's box so it
+   is clearly a separate marker. */
+.el-header__nav .el-nav__link[aria-current]::after {
+  bottom: 2px;
+}
+
+/* Diary chips sit inline after the step text inside the checklist label, so a
+   step and the diary task it completes read as one line. Nudged up a pixel to
+   sit optically centred on a 16px/1.4 line rather than on its baseline. */
+.diary-chip {
+  margin-left: var(--space-3);
+  vertical-align: 1px;
+}
+
+/* The tips list reuses the design system's diamond-bulleted list. It sits
+   directly in a section body rather than inside a checklist row, so it needs
+   its own padding and a little more room between full sentences. */
+.tips-list {
+  margin: 0;
+  padding: var(--space-5);
+  gap: var(--space-3);
+}
+
+/* The system's list baseline-aligns the bullet, which drifts against the first
+   line as soon as a row changes weight or wraps. Pin the bullet to the top of
+   the row instead and centre it on the first line, so every diamond sits on the
+   same optical line as the text it belongs to. */
+.tips-list li {
+  align-items: start;
+  line-height: 1.6;
+}
+
+.tips-list li::before {
+  margin-top: 0.62em;
+}
+
+/* Lucide glyphs as CSS masks, inlined as data URIs. The design system paints
+   .el-icon with currentColor through a mask but ships no per-glyph rules for
+   static HTML, so the mask sources live here.
+
+   Inlined rather than linked to a .svg file on purpose: a browser refuses to
+   load an external mask source over file://, so linked icons would render as
+   blank gaps when you open the page locally. The design system's own
+   deliverables/starting-out.html inlines them for the same reason.
+
+   Source: Lucide 0.544.0 (ISC), from the skill's assets/icons/lucide/. To add
+   a glyph, take the file's markup, swap stroke="currentColor" for #000 (a mask
+   uses alpha, not colour), and percent-encode it. Glyphs used: lightbulb for
+   tip callouts, info for note, triangle-alert for warning. */
+.icon-lightbulb {
+  -webkit-mask-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22%23000%22%20stroke-width=%222%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20d=%22M15%2014c.2-1%20.7-1.7%201.5-2.5%201-.9%201.5-2.2%201.5-3.5A6%206%200%200%200%206%208c0%201%20.2%202.2%201.5%203.5.7.7%201.3%201.5%201.5%202.5%22%3E%3C/path%3E%3Cpath%20d=%22M9%2018h6%22%3E%3C/path%3E%3Cpath%20d=%22M10%2022h4%22%3E%3C/path%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22%23000%22%20stroke-width=%222%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20d=%22M15%2014c.2-1%20.7-1.7%201.5-2.5%201-.9%201.5-2.2%201.5-3.5A6%206%200%200%200%206%208c0%201%20.2%202.2%201.5%203.5.7.7%201.3%201.5%201.5%202.5%22%3E%3C/path%3E%3Cpath%20d=%22M9%2018h6%22%3E%3C/path%3E%3Cpath%20d=%22M10%2022h4%22%3E%3C/path%3E%3C/svg%3E");
+}
+
+.icon-info {
+  -webkit-mask-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22%23000%22%20stroke-width=%222%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Ccircle%20cx=%2212%22%20cy=%2212%22%20r=%2210%22%3E%3C/circle%3E%3Cpath%20d=%22M12%2016v-4%22%3E%3C/path%3E%3Cpath%20d=%22M12%208h.01%22%3E%3C/path%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22%23000%22%20stroke-width=%222%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Ccircle%20cx=%2212%22%20cy=%2212%22%20r=%2210%22%3E%3C/circle%3E%3Cpath%20d=%22M12%2016v-4%22%3E%3C/path%3E%3Cpath%20d=%22M12%208h.01%22%3E%3C/path%3E%3C/svg%3E");
+}
+
+.icon-triangle-alert {
+  -webkit-mask-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22%23000%22%20stroke-width=%222%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20d=%22m21.73%2018-8-14a2%202%200%200%200-3.48%200l-8%2014A2%202%200%200%200%204%2021h16a2%202%200%200%200%201.73-3%22%3E%3C/path%3E%3Cpath%20d=%22M12%209v4%22%3E%3C/path%3E%3Cpath%20d=%22M12%2017h.01%22%3E%3C/path%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22%23000%22%20stroke-width=%222%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20d=%22m21.73%2018-8-14a2%202%200%200%200-3.48%200l-8%2014A2%202%200%200%200%204%2021h16a2%202%200%200%200%201.73-3%22%3E%3C/path%3E%3Cpath%20d=%22M12%209v4%22%3E%3C/path%3E%3Cpath%20d=%22M12%2017h.01%22%3E%3C/path%3E%3C/svg%3E");
+}

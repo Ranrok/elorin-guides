@@ -1,0 +1,717 @@
+/* Elorin RSPS design system - single concatenated stylesheet.
+   Built from styles.css and its import graph, in load order.
+   Contains no @import, so it costs one request instead of eleven serialised ones.
+   Load the three Google fonts with <link rel="preconnect"> + <link rel="stylesheet">
+   in the page head. Regenerate with dist/build.sh after editing any source CSS. */
+
+/* ================ tokens/fonts.css ================ */
+/* Elorin - font families.
+   All three faces are loaded from Google Fonts by the @import at the top of
+   styles.css (Cinzel 400–900, Inter 400/500, JetBrains Mono 400/500).
+   Prefer <link rel="preconnect"> + <link rel="stylesheet"> in a real page head;
+   the @import exists so a consumer that links styles.css alone still gets type.
+   No self-hosted binaries: the live site uses the Google-hosted faces.
+   Every stack degrades to a system face so the page reads if Google fails. */
+:root {
+  --font-display: 'Cinzel', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+
+/* ================ tokens/colors.css ================ */
+/* Elorin - colour. Dark only; there is no light theme.
+   Golds are exact values lifted from the live site's gradient definitions.
+   Navy / grey values are sampled from the homepage screenshot (close approximations). */
+:root {
+  /* --- Navy space ---------------------------------------------------- */
+  --navy-900: #0A101E; /* page base */
+  --navy-800: #111B2E; /* surface / card */
+  --navy-700: #16223A; /* surface raised / input */
+  --navy-600: #1E2C47; /* border subtle */
+  --navy-500: #2C3E60; /* border strong */
+
+  /* --- Gold ramp (hero accent, single hue) --------------------------- */
+  --gold-100: #fff5d4; /* highlight */
+  --gold-200: #e8c885; /* bright: hover, hero text */
+  --gold-400: #c8a45a; /* mid: the workhorse - borders, buttons */
+  --gold-600: #8a6a2c; /* deep: pressed states, gradient base */
+
+  /* --- Blue ---------------------------------------------------------- */
+  --blue-400: #4A7FC1; /* accent */
+  --blue-300: #7FB2E5; /* link */
+  --blue-discord: #2B4C86;
+
+  /* --- Ink ----------------------------------------------------------- */
+  --grey-100: #E8EDF5; /* primary text */
+  --grey-300: #A4B3C9; /* secondary text */
+  --grey-500: #7D8CA6; /* muted - labels and metadata. 5.06:1 on the card surface */
+
+  /* --- Semantic hues ------------------------------------------------- */
+  --green-500: #5FA86B;
+  --amber-500: #C99A3A;
+  --red-500: #B4543F;    /* BORDERS AND FILLS ONLY - 3.51:1, fails as text */
+  --red-300: #D97A63;    /* the text-safe danger tone - 5.67:1 on the card surface */
+
+  /* --- White veils (bevels, zebra rows, inner highlights) ------------ */
+  --veil-2: rgba(255, 255, 255, 0.02);
+  --veil-4: rgba(255, 255, 255, 0.04);
+  --veil-6: rgba(255, 255, 255, 0.06);
+  --veil-10: rgba(255, 255, 255, 0.10);
+
+  /* ================= semantic aliases (use these) =================== */
+  --bg-page: var(--navy-900);
+  --surface-card: var(--navy-800);
+  --surface-raised: var(--navy-700);
+  --surface-sunken: #070C16;
+
+  --border-subtle: var(--navy-600);
+  --border-strong: var(--navy-500);
+  --border-gold: var(--gold-400);
+  --border-gold-soft: rgba(200, 164, 90, 0.32);
+  --bevel-inner: var(--veil-4);
+
+  --text-primary: var(--grey-100);
+  --text-secondary: var(--grey-300);
+  --text-muted: var(--grey-500);
+  /* Completed / dimmed sentences - 5.3:1 on the card surface, unlike --text-muted */
+  --text-dim: #8B99AF;
+  --text-gold: var(--gold-200);
+  --text-on-gold: var(--navy-900);
+  --text-danger: var(--red-300);
+  --text-link: var(--blue-300);
+  --text-link-hover: var(--gold-200);
+
+  --accent: var(--gold-400);
+  --accent-hover: var(--gold-200);
+  --accent-press: var(--gold-600);
+
+  --state-success: var(--green-500);
+  --state-warning: var(--amber-500);
+  /* --state-* are border and fill tones. For danger *text* use --text-danger. */
+  --state-danger: var(--red-500);
+  --state-info: var(--blue-400);
+  --state-tip: var(--gold-400);
+
+  --focus-ring: var(--gold-200);
+
+  /* Item rarity - drop-table cells and item chips */
+  --rarity-common: var(--grey-300);
+  --rarity-uncommon: var(--green-500);
+  --rarity-rare: var(--blue-300);
+  --rarity-very-rare: #B07BD8;
+  --rarity-mega-rare: var(--gold-200);
+
+  /* Difficulty */
+  --diff-easy: var(--green-500);
+  --diff-medium: var(--amber-500);
+  --diff-hard: var(--red-500);
+  --diff-elite: #B07BD8;
+}
+
+/* ================ tokens/typography.css ================ */
+/* Elorin - type scale.
+   Cinzel has no true lowercase: write headings in normal sentence case and the
+   caps / small-caps mix happens by itself. NEVER text-transform: uppercase on Cinzel. */
+:root {
+  /* Sizes */
+  --fs-hero: clamp(42px, 8.5vw, 92px); /* @kind font */
+  --fs-h1: clamp(30px, 5.2vw, 52px); /* @kind font */
+  --fs-h2: clamp(24px, 3.4vw, 34px); /* @kind font */
+  --fs-h3: 24px; /* @kind font */
+  --fs-h4: 19px; /* @kind font */
+  --fs-body: 17px; /* @kind font */
+  --fs-body-sm: 15px; /* @kind font */
+  --fs-caption: 13px; /* @kind font */
+  --fs-label: 12px; /* @kind font */
+  --fs-label-sm: 11px; /* @kind font */
+
+  /* Weights */
+  --fw-display: 700; /* @kind font */
+  --fw-display-heavy: 900; /* @kind font */
+  --fw-display-regular: 400; /* @kind font */
+  --fw-body: 400; /* @kind font */
+  --fw-body-medium: 500; /* @kind font */
+
+  /* Line heights */
+  --lh-hero: 0.98; /* @kind font */
+  --lh-heading: 1.14; /* @kind font */
+  --lh-body: 1.65; /* @kind font */
+  --lh-tight: 1.35; /* @kind font */
+
+  /* Tracking */
+  --ls-hero: 0.02em; /* @kind font */
+  --ls-heading: 0.04em; /* @kind font */
+  --ls-nav: 0.18em; /* @kind font */
+  --ls-label: 0.15em; /* @kind font */
+  --ls-body: 0; /* @kind font */
+
+  /* Measure */
+  --measure-intro: 540px; /* @kind spacing */
+  --measure-prose: 70ch; /* @kind other */
+  --measure-page: 1160px; /* @kind spacing */
+}
+
+/* ================ tokens/spacing.css ================ */
+/* Elorin - spacing, sizing, layout. 4px base grid. */
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* Section rhythm - generous negative space is part of the brand */
+  --section-y: clamp(56px, 9vw, 128px); /* @kind spacing */
+  --gutter: clamp(16px, 4vw, 40px); /* @kind spacing */
+
+  /* Controls - 44px minimum touch target, everywhere */
+  --control-h: 44px;
+  --control-h-lg: 52px;
+  --control-h-sm: 36px; /* desktop-only dense UI; never the sole tap target */
+  --hit-min: 44px;
+
+  /* Fixtures */
+  --header-h: 68px;
+  --progress-header-h: 56px;
+  --sidebar-w: 264px;
+  --slot: 48px; /* gear / inventory cell */
+}
+
+/* ================ tokens/shape.css ================ */
+/* Elorin - radii, borders, elevation.
+   Elevation comes from border contrast and background lightness, not heavy shadow.
+   Nothing is rounded or bubbly; pills are for tags only. */
+:root {
+  --radius-chip: 2px;
+  --radius-card: 4px;
+  --radius-input: 4px;
+  --radius-button: 6px;
+  --radius-pill: 999px; /* tags only */
+
+  --border-w: 1px; /* @kind spacing */
+  --border: 1px solid var(--border-subtle); /* @kind other */
+  --border-hover: 1px solid var(--border-strong); /* @kind other */
+  --border-accent: 1px solid var(--border-gold-soft); /* @kind other */
+  /* --accent-bar-w is the callout left accent */
+  --accent-bar-w: 3px; /* @kind spacing */
+
+  /* Bevel: 1px inner highlight at 4% white, faking a lit top edge */
+  --bevel: inset 0 1px 0 var(--veil-4); /* @kind shadow */
+  --bevel-strong: inset 0 1px 0 var(--veil-10); /* @kind shadow */
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-raised: 0 6px 20px -8px rgba(0, 0, 0, 0.6);
+  --shadow-overlay: 0 24px 64px -16px rgba(0, 0, 0, 0.75);
+  --glow-gold: 0 0 0 1px rgba(200, 164, 90, 0.22), 0 0 18px -4px rgba(200, 164, 90, 0.28); /* @kind shadow */
+  --glow-gold-strong: 0 0 0 1px rgba(232, 200, 133, 0.40), 0 0 28px -6px rgba(232, 200, 133, 0.38); /* @kind shadow */
+
+  --focus-ring-w: 2px; /* @kind spacing */
+  --focus-ring-offset: 2px; /* @kind spacing */
+}
+
+/* ================ tokens/motion.css ================ */
+/* Elorin - motion. 150ms ease-out, everywhere. No bounce, no large-scale movement:
+   hover raises border contrast and shifts gold one step brighter, nothing else. */
+:root {
+  --dur-fast: 100ms; /* @kind other */
+  --dur: 150ms; /* @kind other */
+  /* --dur-slow drives accordion height only */
+  --dur-slow: 240ms; /* @kind other */
+  /* --ease is a plain ease-out curve */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1); /* @kind other */
+  --transition: all var(--dur) var(--ease); /* @kind other */
+  --transition-colors: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); /* @kind other */
+}
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms; /* @kind other */
+    --dur: 0ms; /* @kind other */
+    --dur-slow: 0ms; /* @kind other */
+  }
+}
+
+/* ================ tokens/gradients.css ================ */
+/* Elorin - gradients. Two metal text fills, top-lit surfaces, page atmosphere. */
+:root {
+  /* Metal text fills - background-clip: text. Headings only, never under ~24px:
+     the dark bottom stop fails contrast at small sizes. */
+  --metal-silver: linear-gradient(180deg, #ffffff 0%, #d8dde8 50%, #6e7896 100%); /* @kind color */
+  --metal-gold: linear-gradient(180deg, #fff5d4 0%, #e8c885 35%, #c8a45a 60%, #8a6a2c 100%); /* @kind color */
+
+  /* Surfaces - very subtle top light rather than flat fill */
+  --grad-card: linear-gradient(180deg, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0) 62%); /* @kind color */
+  --grad-raised: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 70%); /* @kind color */
+
+  /* Buttons */
+  --grad-gold-button: linear-gradient(180deg, #e8c885 0%, #c8a45a 52%, #a8853c 100%); /* @kind color */
+  --grad-gold-button-hover: linear-gradient(180deg, #fff5d4 0%, #e8c885 52%, #c8a45a 100%); /* @kind color */
+  --grad-gold-button-press: linear-gradient(180deg, #c8a45a 0%, #a8853c 50%, #8a6a2c 100%); /* @kind color */
+  --grad-navy-button: linear-gradient(180deg, #1E2C47 0%, #16223A 100%); /* @kind color */
+
+  /* Page atmosphere - radial navy, lighter toward centre top */
+  --grad-page: radial-gradient(1200px 620px at 50% -8%, #17233c 0%, rgba(10, 16, 30, 0) 68%); /* @kind color */
+
+  /* Rules and dividers */
+  --grad-rule: linear-gradient(90deg, rgba(200, 164, 90, 0) 0%, rgba(200, 164, 90, 0.5) 50%, rgba(200, 164, 90, 0) 100%); /* @kind color */
+  --grad-progress: linear-gradient(90deg, #8a6a2c 0%, #c8a45a 55%, #e8c885 100%); /* @kind color */
+}
+
+/* ================ base/reset.css ================ */
+/* Elorin - element defaults. Dark only. */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background-color: var(--bg-page);
+  background-image: var(--grad-page);
+  background-repeat: no-repeat;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--fw-display);
+  letter-spacing: var(--ls-heading);
+  line-height: var(--lh-heading);
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+h4 { font-size: var(--fs-h4); }
+p { margin: 0 0 1em; color: var(--text-secondary); }
+p:last-child { margin-bottom: 0; }
+strong, b { color: var(--text-primary); font-weight: var(--fw-body-medium); }
+a { color: var(--text-link); text-decoration: none; border-bottom: 1px solid rgba(127, 178, 229, 0.32); transition: var(--transition-colors); }
+a:hover { color: var(--text-link-hover); border-bottom-color: var(--border-gold-soft); }
+code, kbd, samp { font-family: var(--font-mono); font-size: 0.88em; color: var(--text-primary); background: var(--surface-raised); border: var(--border); border-radius: var(--radius-chip); padding: 0.1em 0.36em; }
+hr { border: 0; height: 1px; background: var(--grad-rule); margin: var(--space-8) 0; }
+img, svg { display: block; max-width: 100%; }
+ul, ol { color: var(--text-secondary); }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: var(--focus-ring-w) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); border-radius: 2px; }
+::selection { background: rgba(200, 164, 90, 0.28); color: var(--gold-100); }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--surface-sunken); }
+::-webkit-scrollbar-thumb { background: var(--navy-600); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: var(--navy-500); }
+
+/* ================ base/utilities.css ================ */
+/* Elorin - utilities. Small, named after the brand motif they carry. */
+
+/* Metal text fills. Headings only - never body copy, never under ~24px. */
+.el-metal-gold, .el-metal-silver {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.el-metal-gold { background-image: var(--metal-gold); }
+.el-metal-silver { background-image: var(--metal-silver); }
+
+/* Mono metadata label, written in brackets: [ BOSS GUIDE ] */
+.el-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label-sm);
+  font-weight: var(--fw-body-medium);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Four-point diamond - the brand shape. Bullets, flourishes, tick states. */
+.el-diamond {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  transform: rotate(45deg);
+  flex: none;
+}
+
+/* Thin gold rule broken by a centred diamond */
+.el-rule {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--accent);
+}
+.el-rule::before, .el-rule::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--grad-rule);
+}
+
+/* Long-form guide text */
+.el-prose { max-width: var(--measure-prose); }
+.el-prose > * + * { margin-top: 1em; }
+/* Centred intro copy */
+.el-intro { max-width: var(--measure-intro); margin-inline: auto; text-align: center; }
+
+/* Page shell */
+.el-page { max-width: var(--measure-page); margin-inline: auto; padding-inline: var(--gutter); }
+
+/* Card surface: subtle top light, 1px low-contrast border, inner bevel */
+.el-surface {
+  background-color: var(--surface-card);
+  background-image: var(--grad-card);
+  border: var(--border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--bevel), var(--shadow-card);
+}
+
+/* Faint low-poly mountain silhouette pinned to the base of the page.
+   Geometric, not illustrative - two flat ridges in navy at low contrast. */
+.el-ridge {
+  position: fixed;
+  inset: auto 0 0 0;
+  height: min(38vh, 340px);
+  pointer-events: none;
+  z-index: 0;
+}
+.el-ridge::before, .el-ridge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.el-ridge::before {
+  background: #131e33;
+  opacity: 0.5;
+  clip-path: polygon(0% 74%, 12% 52%, 22% 66%, 34% 40%, 46% 62%, 58% 46%, 70% 68%, 82% 50%, 92% 64%, 100% 56%, 100% 100%, 0% 100%);
+}
+.el-ridge::after {
+  background: #0d1526;
+  opacity: 0.85;
+  clip-path: polygon(0% 88%, 10% 74%, 20% 84%, 32% 68%, 44% 86%, 56% 72%, 68% 88%, 80% 74%, 90% 86%, 100% 78%, 100% 100%, 0% 100%);
+}
+
+/* Screen-reader only */
+.el-sr {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ================ components/core/core.css ================ */
+/* Elorin - core: icon, button, tag, badge */
+
+/* Icon: Lucide (CDN, static SVG) painted with currentColor via CSS mask,
+   so a glyph inherits its parent's colour with no JS and no inline SVG. */
+.el-icon { display: inline-block; width: 1em; height: 1em; flex: none; background-color: currentColor; -webkit-mask-position: center; mask-position: center; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-size: contain; mask-size: contain; }
+
+/* ---------- Button ---------- */
+.el-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-3); min-height: var(--control-h); padding: 0 var(--space-6); border: 1px solid transparent; border-radius: var(--radius-button); background: none; font-family: var(--font-display); font-size: 14px; font-weight: var(--fw-display); letter-spacing: 0.14em; line-height: 1; color: var(--text-primary); cursor: pointer; text-decoration: none; transition: var(--transition-colors); }
+.el-btn--sm { min-height: var(--control-h-sm); padding: 0 var(--space-4); font-size: 12.5px; }
+.el-btn--lg { min-height: var(--control-h-lg); padding: 0 var(--space-8); font-size: 15px; }
+.el-btn--block { width: 100%; }
+.el-btn__flourish { width: 6px; height: 6px; flex: none; background: currentColor; opacity: 0.5; transform: rotate(45deg); }
+.el-btn .el-icon { font-size: 16px; }
+
+.el-btn--primary { background-image: var(--grad-gold-button); border-color: #d9b671; color: var(--text-on-gold); box-shadow: var(--bevel-strong), 0 0 18px -6px rgba(200, 164, 90, 0.45); }
+.el-btn--primary:hover { background-image: var(--grad-gold-button-hover); border-color: var(--gold-100); box-shadow: var(--bevel-strong), var(--glow-gold-strong); }
+.el-btn--primary:active { background-image: var(--grad-gold-button-press); box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.35); }
+
+.el-btn--secondary { background-image: var(--grad-navy-button); border-color: var(--blue-400); color: var(--text-primary); box-shadow: var(--bevel); }
+.el-btn--secondary:hover { border-color: var(--blue-300); background-color: var(--navy-500); color: #fff; }
+.el-btn--secondary:active { background-image: none; background-color: #14203a; }
+
+.el-btn--discord { background-color: var(--blue-discord); background-image: var(--grad-raised); border-color: #3d63a6; color: #fff; box-shadow: var(--bevel); }
+.el-btn--discord:hover { background-color: #33589a; border-color: var(--blue-300); }
+
+.el-btn--ghost { color: var(--text-gold); padding-inline: var(--space-2); }
+.el-btn--ghost:hover { color: var(--gold-100); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+
+.el-btn--outline { border-color: var(--border-strong); color: var(--text-secondary); background-image: var(--grad-card); }
+.el-btn--outline:hover { border-color: var(--border-gold); color: var(--text-gold); }
+
+.el-btn:disabled, .el-btn[aria-disabled="true"] { opacity: 0.42; cursor: not-allowed; box-shadow: none; }
+.el-btn:disabled:hover, .el-btn[aria-disabled="true"]:hover { background-image: inherit; }
+
+/* ---------- Tag (pill - rarity, skill, meta) ---------- */
+.el-tag { display: inline-flex; align-items: center; gap: 6px; min-height: 22px; padding: 2px 10px; border: 1px solid var(--border-strong); border-radius: var(--radius-pill); background: var(--surface-raised); font-family: var(--font-mono); font-size: var(--fs-label-sm); font-weight: var(--fw-body-medium); letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); white-space: nowrap; }
+.el-tag .el-icon { font-size: 12px; }
+.el-tag__dot { width: 5px; height: 5px; flex: none; transform: rotate(45deg); background: currentColor; }
+.el-tag--gold { color: var(--gold-200); border-color: var(--border-gold-soft); background: rgba(200, 164, 90, 0.10); }
+.el-tag--blue { color: var(--blue-300); border-color: rgba(74, 127, 193, 0.45); background: rgba(74, 127, 193, 0.10); }
+.el-tag--common { color: var(--rarity-common); }
+.el-tag--uncommon { color: var(--rarity-uncommon); border-color: rgba(95, 168, 107, 0.45); background: rgba(95, 168, 107, 0.10); }
+.el-tag--rare { color: var(--rarity-rare); border-color: rgba(127, 178, 229, 0.45); background: rgba(127, 178, 229, 0.10); }
+.el-tag--very-rare { color: var(--rarity-very-rare); border-color: rgba(176, 123, 216, 0.45); background: rgba(176, 123, 216, 0.10); }
+.el-tag--mega-rare { color: var(--rarity-mega-rare); border-color: var(--border-gold-soft); background: rgba(232, 200, 133, 0.12); }
+
+/* ---------- Badge (2px chip - difficulty, level req, counts) ---------- */
+.el-badge { display: inline-flex; align-items: center; gap: 6px; min-height: 20px; padding: 2px 8px; border: 1px solid var(--border-strong); border-radius: var(--radius-chip); background: var(--surface-raised); font-family: var(--font-mono); font-size: var(--fs-label-sm); letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); white-space: nowrap; }
+.el-badge__bar { width: 3px; align-self: stretch; margin: -2px 2px -2px -4px; background: currentColor; }
+.el-badge--easy { color: var(--diff-easy); }
+.el-badge--medium { color: var(--diff-medium); }
+.el-badge--hard { color: var(--diff-hard); }
+.el-badge--elite { color: var(--diff-elite); }
+.el-badge--gold { color: var(--gold-200); border-color: var(--border-gold-soft); }
+.el-badge--skill { color: var(--text-primary); }
+.el-badge--skill .el-badge__lvl { color: var(--gold-200); }
+
+/* ================ components/checklist/checklist.css ================ */
+/* Elorin - checklist: progress bar, sticky progress header, section card, checklist item */
+
+/* ---------- Progress bar ---------- */
+.el-progress { display: flex; flex-direction: column; gap: var(--space-2); }
+.el-progress__track { position: relative; height: 6px; border-radius: 2px; background: var(--surface-sunken); box-shadow: inset 0 0 0 1px var(--border-subtle); overflow: hidden; }
+.el-progress--thin .el-progress__track { height: 4px; }
+.el-progress__fill { height: 100%; background-image: var(--grad-progress); box-shadow: 0 0 12px -2px rgba(232, 200, 133, 0.55); transition: width var(--dur-slow) var(--ease); }
+.el-progress__meta { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); font-family: var(--font-mono); font-size: var(--fs-label-sm); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--text-muted); }
+.el-progress__count { color: var(--text-gold); }
+.el-progress--done .el-progress__count { color: var(--state-success); }
+
+/* ---------- Sticky overall progress header ---------- */
+.el-phead { position: sticky; top: 0; z-index: 30; background: rgba(10, 16, 30, 0.86); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-subtle); box-shadow: var(--bevel), 0 10px 24px -20px #000; }
+.el-phead__inner { display: flex; align-items: center; gap: var(--space-5); max-width: var(--measure-page); margin-inline: auto; padding: var(--space-3) var(--gutter); min-height: var(--progress-header-h); }
+.el-phead__title { font-family: var(--font-display); font-size: 16px; letter-spacing: var(--ls-heading); color: var(--text-primary); white-space: nowrap; }
+.el-phead__bar { flex: 1; min-width: 80px; }
+.el-phead__count { font-family: var(--font-mono); font-size: var(--fs-label); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--text-gold); white-space: nowrap; }
+@media (max-width: 640px) {
+  .el-phead__inner { flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-3); }
+  .el-phead__bar { flex-basis: 100%; order: 3; }
+}
+
+/* ---------- Section card ---------- */
+.el-section { background-color: var(--surface-card); background-image: var(--grad-card); border: var(--border); border-radius: var(--radius-card); box-shadow: var(--bevel), var(--shadow-card); }
+.el-section__head { display: grid; grid-template-columns: 1fr auto; gap: var(--space-2) var(--space-4); align-items: center; padding: var(--space-5) var(--space-5) var(--space-4); border-bottom: 1px solid var(--border-subtle); }
+.el-section__label { grid-column: 1 / -1; font-family: var(--font-mono); font-size: var(--fs-label-sm); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--text-muted); }
+.el-section__title { font-family: var(--font-display); font-size: 22px; font-weight: var(--fw-display); letter-spacing: var(--ls-heading); color: var(--text-primary); }
+.el-section__ratio { font-family: var(--font-mono); font-size: var(--fs-label); letter-spacing: 0.1em; color: var(--text-gold); }
+.el-section__bar { grid-column: 1 / -1; }
+.el-section__desc { grid-column: 1 / -1; margin: 0; font-size: var(--fs-body-sm); color: var(--text-secondary); }
+.el-section__body { display: flex; flex-direction: column; }
+.el-section--complete { border-color: var(--border-gold-soft); }
+.el-section--complete .el-section__ratio { color: var(--state-success); }
+
+/* ---------- Checklist item ---------- */
+.el-check { display: grid; grid-template-columns: 26px 1fr; column-gap: var(--space-4); align-items: start; padding: var(--space-4) var(--space-5); border-bottom: 1px solid var(--border-subtle); transition: background-color var(--dur) var(--ease); }
+.el-check:last-child { border-bottom: 0; }
+.el-check:hover { background: var(--veil-2); }
+.el-check__box { position: relative; grid-row: 1 / span 3; display: grid; place-items: center; width: 26px; height: 26px; margin-top: 1px; padding: 0; border: 1px solid var(--border-strong); border-radius: var(--radius-input); background: var(--surface-raised); box-shadow: var(--bevel); cursor: pointer; transition: var(--transition-colors); }
+/* 44px tap target without a 44px box */
+.el-check__box::before { content: ""; position: absolute; inset: -9px; }
+.el-check__box:hover { border-color: var(--border-gold); }
+.el-check__mark { width: 11px; height: 11px; transform: rotate(45deg) scale(0.4); opacity: 0; background-image: var(--metal-gold); transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease); }
+.el-check__box[aria-checked="true"] { border-color: var(--border-gold); background: rgba(200, 164, 90, 0.10); box-shadow: var(--bevel), var(--glow-gold); }
+.el-check__box[aria-checked="true"] .el-check__mark { transform: rotate(45deg) scale(1); opacity: 1; }
+/* Static-HTML variant: a real checkbox, styled identically to the button box.
+   Works with JS off - :checked and :has() carry the completed state. */
+.el-check__input { position: relative; grid-row: 1 / span 3; appearance: none; -webkit-appearance: none; display: grid; place-items: center; width: 26px; height: 26px; margin: 1px 0 0; padding: 0; border: 1px solid var(--border-strong); border-radius: var(--radius-input); background: var(--surface-raised); box-shadow: var(--bevel); cursor: pointer; transition: var(--transition-colors); }
+.el-check__input::before { content: ""; position: absolute; inset: -9px; }
+.el-check__input::after { content: ""; width: 11px; height: 11px; transform: rotate(45deg) scale(0.4); opacity: 0; background-image: var(--metal-gold); transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease); }
+.el-check__input:hover { border-color: var(--border-gold); }
+.el-check__input:checked { border-color: var(--border-gold); background: rgba(200, 164, 90, 0.10); box-shadow: var(--bevel), var(--glow-gold); }
+.el-check__input:checked::after { transform: rotate(45deg) scale(1); opacity: 1; }
+.el-check:has(.el-check__input:checked) .el-check__label { color: var(--text-dim); }
+.el-check:has(.el-check__input:checked) .el-check__title { text-decoration: line-through; text-decoration-color: var(--gold-600); text-decoration-thickness: 1px; }
+.el-check:has(.el-check__input:checked) .el-check__desc, .el-check:has(.el-check__input:checked) .el-check__subs li { color: var(--text-dim); }
+.el-check__label { display: block; min-height: 24px; padding: 0; font-size: 16px; font-weight: var(--fw-body-medium); line-height: 1.4; color: var(--text-primary); cursor: pointer; }
+.el-check__title { display: inline; }
+.el-check__desc { margin: 4px 0 0; font-size: var(--fs-body-sm); line-height: 1.5; color: var(--text-secondary); }
+.el-check__meta { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-3); }
+.el-check__subs { margin: var(--space-3) 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.el-check__subs li { display: grid; grid-template-columns: 10px 1fr; gap: var(--space-3); align-items: baseline; font-size: var(--fs-body-sm); color: var(--text-secondary); }
+.el-check__subs li::before { content: ""; width: 5px; height: 5px; margin-top: 7px; background: var(--gold-400); transform: rotate(45deg); }
+/* Completed: gold is never the only signal - the title also strikes and dims */
+.el-check--done .el-check__label { color: var(--text-dim); }
+.el-check--done .el-check__title { text-decoration: line-through; text-decoration-color: var(--gold-600); text-decoration-thickness: 1px; }
+.el-check--done .el-check__desc, .el-check--done .el-check__subs li { color: var(--text-dim); }
+@media (max-width: 480px) {
+  .el-check { padding: var(--space-4); column-gap: var(--space-3); }
+}
+
+/* ================ components/feedback/feedback.css ================ */
+/* Elorin - feedback: callouts in four tones */
+.el-callout { display: grid; grid-template-columns: 18px 1fr; gap: var(--space-3); padding: var(--space-4) var(--space-5); border: var(--border); border-left: var(--accent-bar-w) solid var(--state-tip); border-radius: var(--radius-card); background-color: var(--surface-card); background-image: var(--grad-card); box-shadow: var(--bevel); }
+.el-callout__icon { margin-top: 3px; font-size: 18px; color: var(--state-tip); }
+.el-callout__title { margin: 0 0 4px; font-family: var(--font-mono); font-size: var(--fs-label); font-weight: var(--fw-body-medium); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--state-tip); }
+.el-callout__body { font-size: var(--fs-body-sm); line-height: 1.6; color: var(--text-secondary); }
+.el-callout__body > :last-child { margin-bottom: 0; }
+.el-callout--tip { border-left-color: var(--state-tip); background-color: rgba(200, 164, 90, 0.05); }
+.el-callout--tip .el-callout__icon, .el-callout--tip .el-callout__title { color: var(--gold-200); }
+.el-callout--note { border-left-color: var(--state-info); background-color: rgba(74, 127, 193, 0.06); }
+.el-callout--note .el-callout__icon, .el-callout--note .el-callout__title { color: var(--blue-300); }
+.el-callout--warning { border-left-color: var(--state-warning); background-color: rgba(201, 154, 58, 0.06); }
+.el-callout--warning .el-callout__icon, .el-callout--warning .el-callout__title { color: #dcae4d; }
+.el-callout--danger { border-left-color: var(--state-danger); background-color: rgba(180, 84, 63, 0.07); }
+.el-callout--danger .el-callout__icon, .el-callout--danger .el-callout__title { color: #d3705a; }
+
+/* ================ components/content/content.css ================ */
+/* Elorin - content: numbered step list, accordion */
+
+/* ---------- Step list ---------- */
+.el-steps { margin: 0; padding: 0; list-style: none; counter-reset: el-step; display: flex; flex-direction: column; }
+.el-steps__item { position: relative; counter-increment: el-step; display: grid; grid-template-columns: 30px 1fr; column-gap: var(--space-4); padding-bottom: var(--space-6); }
+.el-steps__item:last-child { padding-bottom: 0; }
+.el-steps__item::before { content: counter(el-step, decimal-leading-zero); display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid var(--border-gold-soft); border-radius: var(--radius-chip); background: var(--surface-raised); box-shadow: var(--bevel); font-family: var(--font-mono); font-size: var(--fs-label); color: var(--text-gold); }
+.el-steps__item:not(:last-child)::after { content: ""; position: absolute; left: 15px; top: 36px; bottom: 6px; width: 1px; background: linear-gradient(180deg, var(--border-gold-soft), var(--border-subtle)); }
+.el-steps__title { margin: 4px 0 0; font-family: var(--font-display); font-size: var(--fs-h4); letter-spacing: var(--ls-heading); color: var(--text-primary); }
+.el-steps__body { margin-top: var(--space-2); font-size: var(--fs-body-sm); line-height: 1.6; color: var(--text-secondary); }
+.el-steps__body > :last-child { margin-bottom: 0; }
+
+/* ---------- Accordion ---------- */
+.el-acc { border: var(--border); border-radius: var(--radius-card); background-color: var(--surface-card); background-image: var(--grad-card); box-shadow: var(--bevel); }
+.el-acc + .el-acc { margin-top: var(--space-3); }
+.el-acc__summary { display: flex; align-items: center; gap: var(--space-3); min-height: var(--control-h); padding: var(--space-3) var(--space-5); cursor: pointer; list-style: none; font-family: var(--font-display); font-size: 16px; letter-spacing: var(--ls-heading); color: var(--text-primary); transition: var(--transition-colors); }
+.el-acc__summary::-webkit-details-marker { display: none; }
+.el-acc__summary:hover { color: var(--text-gold); }
+.el-acc__chev { margin-left: auto; font-size: 16px; color: var(--text-muted); transition: transform var(--dur) var(--ease), color var(--dur) var(--ease); }
+.el-acc__summary:hover .el-acc__chev { color: var(--text-gold); }
+.el-acc[open] > .el-acc__summary { border-bottom: 1px solid var(--border-subtle); }
+.el-acc[open] > .el-acc__summary .el-acc__chev { transform: rotate(180deg); }
+.el-acc__tag { font-family: var(--font-mono); font-size: var(--fs-label-sm); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--text-muted); }
+.el-acc__body { padding: var(--space-5); font-size: var(--fs-body-sm); line-height: 1.65; color: var(--text-secondary); }
+.el-acc__body > :last-child { margin-bottom: 0; }
+
+/* ================ components/navigation/navigation.css ================ */
+/* Elorin - navigation: site header, footer, docs sidebar */
+
+/* ---------- Site header ---------- */
+.el-header { position: relative; z-index: 40; border-bottom: 1px solid var(--border-subtle); background: rgba(10, 16, 30, 0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.el-header__inner { max-width: var(--measure-page); margin-inline: auto; padding: var(--space-3) var(--gutter); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: var(--space-4); min-height: var(--header-h); }
+.el-header--centred .el-header__inner { grid-template-columns: 1fr; justify-items: center; gap: var(--space-3); padding-block: var(--space-5); }
+
+.el-lockup { display: inline-flex; align-items: center; gap: var(--space-3); text-decoration: none; border: 0; }
+.el-lockup img { height: 34px; width: auto; filter: drop-shadow(0 0 12px rgba(74, 127, 193, 0.35)); }
+.el-lockup__word { white-space: nowrap; font-family: var(--font-display); font-size: 17px; font-weight: var(--fw-display); letter-spacing: 0.2em; color: var(--text-primary); }
+.el-header--centred .el-lockup { flex-direction: column; gap: var(--space-2); }
+.el-header--centred .el-lockup img { height: 56px; }
+
+.el-nav { display: flex; align-items: center; gap: clamp(var(--space-4), 3vw, var(--space-8)); }
+.el-nav__link { position: relative; display: inline-flex; align-items: center; min-height: var(--hit-min); padding-inline: 2px; border: 0; font-family: var(--font-display); font-size: 13.5px; font-weight: var(--fw-display); letter-spacing: var(--ls-nav); color: var(--text-secondary); text-decoration: none; transition: var(--transition-colors); }
+.el-nav__link:hover { color: var(--text-gold); }
+.el-nav__link[aria-current] { color: var(--gold-200); }
+/* Small gold diamond dot under the active item */
+.el-nav__link[aria-current]::after { content: ""; position: absolute; left: 50%; bottom: 8px; width: 5px; height: 5px; margin-left: -2.5px; background: var(--gold-200); transform: rotate(45deg); box-shadow: 0 0 8px rgba(232, 200, 133, 0.7); }
+/* Header nav sits a touch lower than the optical centre, matching the live site */
+.el-header__nav .el-nav__link { padding-top: 7px; }
+.el-header__actions { display: flex; align-items: center; gap: var(--space-2); justify-self: end; }
+.el-header__toggle { display: none; }
+@media (max-width: 1080px) {
+  .el-header:not(.el-header--centred) .el-lockup__word { display: none; }
+}
+@media (max-width: 860px) {
+  .el-header__inner { grid-template-columns: auto auto; }
+  .el-header__nav { grid-column: 1 / -1; order: 3; overflow-x: auto; gap: var(--space-5); }
+  .el-header__actions { justify-self: end; }
+}
+
+/* ---------- Footer ---------- */
+.el-footer { margin-top: var(--section-y); border-top: 1px solid var(--border-subtle); background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(0, 0, 0, 0.25)); }
+.el-footer__inner { max-width: var(--measure-page); margin-inline: auto; padding: var(--space-12) var(--gutter) var(--space-10); display: flex; flex-direction: column; align-items: center; gap: var(--space-5); text-align: center; }
+.el-footer__nav { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-2) var(--space-6); }
+.el-footer__legal { font-family: var(--font-mono); font-size: var(--fs-label-sm); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--text-muted); }
+
+/* ---------- Docs sidebar ---------- */
+.el-side { display: flex; flex-direction: column; gap: var(--space-5); width: 100%; max-width: var(--sidebar-w); }
+.el-side__search { position: relative; display: flex; align-items: center; }
+.el-side__search .el-icon { position: absolute; left: 12px; font-size: 15px; color: var(--text-muted); pointer-events: none; }
+.el-side__input { width: 100%; min-height: var(--control-h); padding: 0 var(--space-3) 0 36px; border: var(--border); border-radius: var(--radius-input); background: var(--surface-raised); box-shadow: var(--bevel); color: var(--text-primary); font-size: var(--fs-body-sm); transition: var(--transition-colors); }
+.el-side__input::placeholder { color: var(--text-muted); }
+.el-side__input:hover { border-color: var(--border-strong); }
+.el-side__input:focus { outline: none; border-color: var(--border-gold); box-shadow: var(--bevel), var(--glow-gold); }
+.el-side__cat { border-top: 1px solid var(--border-subtle); }
+.el-side__cat:last-child { border-bottom: 1px solid var(--border-subtle); }
+.el-side__catbtn { display: flex; align-items: center; gap: var(--space-3); width: 100%; min-height: var(--hit-min); padding: var(--space-2) 0; border: 0; background: none; cursor: pointer; font-family: var(--font-mono); font-size: var(--fs-label); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--text-muted); transition: var(--transition-colors); }
+.el-side__catbtn:hover { color: var(--text-gold); }
+.el-side__catbtn .el-icon { margin-left: auto; font-size: 14px; transition: transform var(--dur) var(--ease); }
+.el-side__catbtn[aria-expanded="true"] { color: var(--text-secondary); }
+.el-side__catbtn[aria-expanded="true"] .el-icon { transform: rotate(180deg); }
+.el-side__list { margin: 0 0 var(--space-3); padding: 0 0 0 var(--space-2); list-style: none; display: flex; flex-direction: column; }
+.el-side__link { display: flex; align-items: center; gap: var(--space-3); min-height: 36px; padding: 6px var(--space-3); border: 0; border-left: 1px solid var(--border-subtle); font-size: var(--fs-body-sm); color: var(--text-secondary); text-decoration: none; transition: var(--transition-colors); }
+.el-side__link:hover { color: var(--text-primary); border-left-color: var(--border-strong); background: var(--veil-2); }
+.el-side__link[aria-current] { color: var(--gold-200); border-left-color: var(--gold-400); background: rgba(200, 164, 90, 0.07); }
+.el-side__empty { padding: var(--space-2) var(--space-3); font-family: var(--font-mono); font-size: var(--fs-label-sm); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--text-muted); }
+
+/* ================ components/game/game.css ================ */
+/* Elorin - game surfaces: item chip, gear preset grid, inventory grid */
+
+/* ---------- Item chip (inline in prose) ---------- */
+.el-item { display: inline-flex; align-items: center; gap: 6px; padding: 2px 8px 2px 4px; border: var(--border); border-radius: var(--radius-chip); background: var(--surface-raised); box-shadow: var(--bevel); font-size: var(--fs-body-sm); line-height: 1.3; color: var(--text-primary); text-decoration: none; vertical-align: baseline; transition: var(--transition-colors); }
+a.el-item:hover { border-color: var(--border-gold); color: var(--gold-200); }
+.el-item__icon { width: 20px; height: 20px; flex: none; display: grid; place-items: center; background: var(--surface-sunken); box-shadow: inset 0 0 0 1px var(--border-subtle); }
+.el-item__icon img { width: 18px; height: 18px; object-fit: contain; }
+.el-item__icon::after { content: ""; width: 6px; height: 6px; background: var(--navy-500); transform: rotate(45deg); }
+.el-item__icon:has(img)::after { display: none; }
+.el-item__qty { font-family: var(--font-mono); font-size: var(--fs-label-sm); color: var(--gold-200); }
+
+/* ---------- Slot grids ---------- */
+.el-grid { display: grid; gap: var(--space-2); width: max-content; }
+.el-grid--gear { grid-template-columns: repeat(4, var(--slot)); }
+.el-grid--inv { grid-template-columns: repeat(4, var(--slot)); }
+.el-slot { position: relative; width: var(--slot); height: var(--slot); display: grid; place-items: center; border: 1px solid var(--border-subtle); border-radius: var(--radius-chip); background-color: var(--surface-sunken); background-image: var(--grad-card); box-shadow: var(--bevel); transition: var(--transition-colors); }
+.el-slot img { width: 34px; height: 34px; object-fit: contain; }
+.el-slot--empty::after { content: ""; width: 8px; height: 8px; background: var(--navy-600); transform: rotate(45deg); }
+.el-slot:hover { border-color: var(--border-gold); box-shadow: var(--bevel), var(--glow-gold); z-index: 2; }
+.el-slot__qty { position: absolute; top: 2px; left: 3px; font-family: var(--font-mono); font-size: 10px; color: var(--gold-200); text-shadow: 0 1px 2px #000; }
+/* Hover tooltip - pure CSS, driven by data-tip */
+.el-slot[data-tip]:hover::before { content: attr(data-tip); position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); z-index: 5; padding: 5px 9px; border: 1px solid var(--border-strong); border-radius: var(--radius-chip); background: var(--navy-700); box-shadow: var(--shadow-raised); font-family: var(--font-mono); font-size: var(--fs-label-sm); letter-spacing: 0.06em; color: var(--text-primary); white-space: nowrap; pointer-events: none; }
+.el-preset { display: flex; flex-wrap: wrap; gap: var(--space-8); }
+.el-preset__col { display: flex; flex-direction: column; gap: var(--space-3); }
+.el-preset__label { font-family: var(--font-mono); font-size: var(--fs-label-sm); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--text-muted); }
+
+/* ================ components/data/data.css ================ */
+/* Elorin - data: tables, infobox */
+
+/* ---------- Data table ---------- */
+.el-table-wrap { max-height: var(--el-table-max, none); overflow: auto; border: var(--border); border-radius: var(--radius-card); background: var(--surface-card); box-shadow: var(--bevel); }
+.el-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: var(--fs-body-sm); }
+.el-table caption { padding: var(--space-3) var(--space-4); text-align: left; font-family: var(--font-mono); font-size: var(--fs-label-sm); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--text-muted); border-bottom: 1px solid var(--border-subtle); }
+.el-table th { position: sticky; top: 0; z-index: 2; padding: var(--space-3) var(--space-4); text-align: left; background: var(--navy-700); border-bottom: 1px solid var(--border-strong); box-shadow: var(--bevel); font-family: var(--font-mono); font-size: var(--fs-label-sm); font-weight: var(--fw-body-medium); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--text-secondary); white-space: nowrap; }
+.el-table td { padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--border-subtle); color: var(--text-secondary); vertical-align: middle; }
+.el-table tbody tr:nth-child(even) td { background: var(--veil-2); }
+.el-table tbody tr:hover td { background: var(--veil-4); }
+.el-table tbody tr:last-child td { border-bottom: 0; }
+.el-table td:first-child { color: var(--text-primary); }
+.el-table .num, .el-table th.num { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
+.el-table .rate { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.el-table .rate--common { color: var(--rarity-common); }
+.el-table .rate--uncommon { color: var(--rarity-uncommon); }
+.el-table .rate--rare { color: var(--rarity-rare); }
+.el-table .rate--very-rare { color: var(--rarity-very-rare); }
+.el-table .rate--mega-rare { color: var(--rarity-mega-rare); text-shadow: 0 0 12px rgba(232, 200, 133, 0.35); }
+
+/* ---------- Infobox (NPC / item pages) ---------- */
+.el-infobox { width: 100%; max-width: 320px; border: var(--border); border-radius: var(--radius-card); background-color: var(--surface-card); background-image: var(--grad-card); box-shadow: var(--bevel), var(--shadow-card); overflow: hidden; }
+.el-infobox__head { padding: var(--space-4) var(--space-5) var(--space-3); border-bottom: 1px solid var(--border-subtle); }
+.el-infobox__kind { font-family: var(--font-mono); font-size: var(--fs-label-sm); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--text-muted); }
+.el-infobox__title { margin-top: 2px; font-family: var(--font-display); font-size: 21px; letter-spacing: var(--ls-heading); color: var(--text-primary); }
+.el-infobox__media { position: relative; aspect-ratio: 4 / 3; display: grid; place-items: center; background: var(--surface-sunken); border-bottom: 1px solid var(--border-subtle); }
+.el-infobox__media img { width: 100%; height: 100%; object-fit: cover; }
+.el-infobox__media--empty::after { content: ""; width: 22px; height: 22px; background: var(--navy-600); transform: rotate(45deg); }
+.el-infobox__rows { display: grid; grid-template-columns: auto 1fr; }
+.el-infobox__rows dt { padding: var(--space-2) var(--space-3) var(--space-2) var(--space-5); border-bottom: 1px solid var(--border-subtle); font-family: var(--font-mono); font-size: var(--fs-label-sm); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--text-muted); white-space: nowrap; }
+.el-infobox__rows dd { margin: 0; padding: var(--space-2) var(--space-5) var(--space-2) 0; border-bottom: 1px solid var(--border-subtle); text-align: right; font-size: var(--fs-body-sm); color: var(--text-primary); }
+.el-infobox__rows dt:last-of-type, .el-infobox__rows dd:last-of-type { border-bottom: 0; }
+.el-infobox__foot { display: flex; flex-wrap: wrap; gap: var(--space-2); padding: var(--space-4) var(--space-5); border-top: 1px solid var(--border-subtle); }
+
+/* ================ components/media/media.css ================ */
+/* Elorin - media: video embed wrapper, screenshot figure */
+.el-embed { border: var(--border); border-radius: var(--radius-card); background: var(--surface-sunken); box-shadow: var(--bevel), var(--shadow-card); overflow: hidden; }
+.el-embed__frame { position: relative; aspect-ratio: 16 / 9; width: 100%; }
+.el-embed__frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.el-embed__placeholder { position: absolute; inset: 0; display: grid; place-items: center; gap: var(--space-3); align-content: center; color: var(--text-muted); }
+.el-embed__placeholder .el-icon { font-size: 30px; color: var(--gold-400); }
+.el-embed__caption, .el-figure__caption { padding: var(--space-3) var(--space-4); border-top: 1px solid var(--border-subtle); background: var(--surface-card); font-family: var(--font-mono); font-size: var(--fs-label-sm); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--text-muted); }
+.el-figure { margin: 0; border: var(--border); border-radius: var(--radius-card); background: var(--surface-card); box-shadow: var(--bevel), var(--shadow-card); overflow: hidden; }
+.el-figure__media { display: block; width: 100%; background: var(--surface-sunken); }
+.el-figure__media img { width: 100%; display: block; }
+.el-figure__media--empty { aspect-ratio: 16 / 9; display: grid; place-items: center; }
+.el-figure__media--empty::after { content: ""; width: 20px; height: 20px; background: var(--navy-600); transform: rotate(45deg); }

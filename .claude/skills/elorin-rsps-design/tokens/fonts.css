@@ -1,0 +1,13 @@
+/* Elorin - font families.
+   All three faces are loaded from Google Fonts by the @import at the top of
+   styles.css (Cinzel 400–900, Inter 400/500, JetBrains Mono 400/500).
+   Prefer <link rel="preconnect"> + <link rel="stylesheet"> in a real page head;
+   the @import in styles.css exists so a consumer linking styles.css alone still
+   gets type. dist/elorin.css has no @import at all - link the fonts yourself.
+   No self-hosted binaries: the live site uses the Google-hosted faces.
+   Every stack degrades to a system face so the page reads if Google fails. */
+:root {
+  --font-display: 'Cinzel', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}

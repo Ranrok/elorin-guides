@@ -1,0 +1,19 @@
+/* Elorin - motion. 150ms ease-out, everywhere. No bounce, no large-scale movement:
+   hover raises border contrast and shifts gold one step brighter, nothing else. */
+:root {
+  --dur-fast: 100ms; /* @kind other */
+  --dur: 150ms; /* @kind other */
+  /* --dur-slow drives accordion height only */
+  --dur-slow: 240ms; /* @kind other */
+  /* --ease is a plain ease-out curve */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1); /* @kind other */
+  --transition: all var(--dur) var(--ease); /* @kind other */
+  --transition-colors: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); /* @kind other */
+}
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms; /* @kind other */
+    --dur: 0ms; /* @kind other */
+    --dur-slow: 0ms; /* @kind other */
+  }
+}

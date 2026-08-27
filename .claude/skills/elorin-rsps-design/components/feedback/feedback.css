@@ -1,0 +1,14 @@
+/* Elorin - feedback: callouts in four tones */
+.el-callout { display: grid; grid-template-columns: 18px 1fr; gap: var(--space-3); padding: var(--space-4) var(--space-5); border: var(--border); border-left: var(--accent-bar-w) solid var(--state-tip); border-radius: var(--radius-card); background-color: var(--surface-card); background-image: var(--grad-card); box-shadow: var(--bevel); }
+.el-callout__icon { margin-top: 3px; font-size: 18px; color: var(--state-tip); }
+.el-callout__title { margin: 0 0 4px; font-family: var(--font-mono); font-size: var(--fs-label); font-weight: var(--fw-body-medium); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--state-tip); }
+.el-callout__body { font-size: var(--fs-body-sm); line-height: 1.6; color: var(--text-secondary); }
+.el-callout__body > :last-child { margin-bottom: 0; }
+.el-callout--tip { border-left-color: var(--state-tip); background-color: rgba(200, 164, 90, 0.05); }
+.el-callout--tip .el-callout__icon, .el-callout--tip .el-callout__title { color: var(--gold-200); }
+.el-callout--note { border-left-color: var(--state-info); background-color: rgba(74, 127, 193, 0.06); }
+.el-callout--note .el-callout__icon, .el-callout--note .el-callout__title { color: var(--blue-300); }
+.el-callout--warning { border-left-color: var(--state-warning); background-color: rgba(201, 154, 58, 0.06); }
+.el-callout--warning .el-callout__icon, .el-callout--warning .el-callout__title { color: #dcae4d; }
+.el-callout--danger { border-left-color: var(--state-danger); background-color: rgba(180, 84, 63, 0.07); }
+.el-callout--danger .el-callout__icon, .el-callout--danger .el-callout__title { color: #d3705a; }

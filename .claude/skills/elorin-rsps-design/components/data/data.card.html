@@ -1,0 +1,21 @@
+<!-- @dsCard group="Components" viewport="700x420" name="Tables and infobox" subtitle="Sticky-header drop table, rarity rates, NPC infobox" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Data</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>body{margin:0;padding:22px;background:var(--bg-page);background-image:var(--grad-page)}.row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}.col{display:flex;flex-direction:column;gap:14px}.cap{font-family:var(--font-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}.grid{display:grid;grid-template-columns:1fr 300px;gap:22px;align-items:start}</style>
+</head><body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+const DS = window.ElorinRSPSDesignSystem_44a46d;
+const { DataTable, InfoBox, Badge, Tag } = DS;
+const cols=[{key:"item",label:"Item"},{key:"qty",label:"Qty",align:"right"},{key:"rate",label:"Rate",align:"right",rarityKey:"rarity"}];
+const rows=[{item:"Blood rune",qty:"120",rate:"1/3",rarity:"common"},{item:"Zarosian insignia",qty:"1",rate:"1/24",rarity:"uncommon"},{item:"Nexling pet",qty:"1",rate:"1/500",rarity:"very-rare"},{item:"Torva platebody",qty:"1",rate:"1/860",rarity:"mega-rare"},{item:"Virtus mask",qty:"1",rate:"1/645",rarity:"mega-rare"}];
+function Card(){return (<div className="grid">
+<DataTable caption="Nex drop table" maxHeight={300} columns={cols} rows={rows} />
+<InfoBox kind="Boss" title="Nex" rows={[{label:"Combat",value:"1001"},{label:"Hitpoints",value:"5000"},{label:"Weakness",value:"Magic"},{label:"Team size",value:"2 to 4"}]} footer={<><Badge tone="elite" bar>Elite</Badge><Tag tone="gold" diamond>Custom</Tag></>} />
+</div>);}
+ReactDOM.createRoot(document.getElementById("root")).render(<Card />);
+</script></body></html>

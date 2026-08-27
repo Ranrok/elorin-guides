@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Boss guide page" description="Wiki boss page - sidebar, infobox, phase steps, gear preset, drop table with rarity rates" -->
+<helmet><script src="./ds-base.js"></script>
+<style>body{margin:0}@media (max-width:900px){.bg-shell{grid-template-columns:minmax(0,1fr) !important}.bg-lede{grid-template-columns:minmax(0,1fr) !important}}</style>
+</helmet>
+<div style="position:relative;min-height:100vh;background-color:#0A101E;background-image:radial-gradient(1200px 620px at 50% -8%, #17233c 0%, rgba(10,16,30,0) 68%);background-repeat:no-repeat;font-family:'Inter',system-ui,sans-serif;color:#E8EDF5">
+<div class="el-ridge"></div>
+<div style="position:relative;z-index:1">
+<header class="el-header"><div class="el-header__inner">
+<a class="el-lockup" href="#"><img src="../../assets/elorin-logo.png" alt="Elorin"><span class="el-lockup__word">Elorin RSPS</span></a>
+<nav class="el-nav el-header__nav" aria-label="Primary"><a class="el-nav__link" href="#">Home</a><a class="el-nav__link" href="#" aria-current="page">Guides</a><a class="el-nav__link" href="#">Discord</a><a class="el-nav__link" href="#">Vote</a><a class="el-nav__link" href="#">Download</a></nav>
+<div class="el-header__actions"><a class="el-btn el-btn--outline el-btn--sm" href="#">Account</a></div>
+</div></header>
+<div class="el-page bg-shell" style="display:grid;grid-template-columns:264px minmax(0,1fr);gap:40px;padding-top:40px;padding-bottom:64px">
+<sc-if value="{{ showSidebar }}" hint-placeholder-val="{{ true }}">
+<nav class="el-side" aria-label="Guides">
+<div class="el-side__search"><span class="el-icon" style="position:absolute;left:12px;font-size:15px;color:#7D8CA6;background:currentColor;-webkit-mask:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m21%2021-4.34-4.34%22%2F%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2211%22%20r%3D%228%22%2F%3E%3C%2Fsvg%3E) center/contain no-repeat;mask:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m21%2021-4.34-4.34%22%2F%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2211%22%20r%3D%228%22%2F%3E%3C%2Fsvg%3E) center/contain no-repeat"></span><input class="el-side__input" type="search" placeholder="Search guides" aria-label="Search guides"></div>
+<div>
+<div class="el-side__cat"><button class="el-side__catbtn" type="button" aria-expanded="true">Getting started</button><ul class="el-side__list"><li><a class="el-side__link" href="#">Starting out</a></li><li><a class="el-side__link" href="#">Money making</a></li></ul></div>
+<div class="el-side__cat"><button class="el-side__catbtn" type="button" aria-expanded="true">Bosses</button><ul class="el-side__list"><li><a class="el-side__link" href="#" aria-current="page">Nex</a></li><li><a class="el-side__link" href="#">Corporeal Beast</a></li><li><a class="el-side__link" href="#">Elorin Wyrm</a></li></ul></div>
+<div class="el-side__cat"><button class="el-side__catbtn" type="button" aria-expanded="true">Raids</button><ul class="el-side__list"><li><a class="el-side__link" href="#">Vault of Elorin</a></li><li><a class="el-side__link" href="#">Hard mode</a></li></ul></div>
+</div>
+</nav>
+</sc-if>
+<div>
+<span class="el-label">[ boss guide &middot; god wars dungeon ]</span>
+<div class="bg-lede" style="display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:32px;align-items:start;margin-top:12px">
+<div>
+<h1 style="font-family:'Cinzel',Georgia,serif;font-size:52px;font-weight:700;letter-spacing:0.04em;line-height:1.14;margin:0"><span class="el-metal-silver">Nex</span></h1>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px">
+<span class="el-badge el-badge--elite"><span class="el-badge__bar"></span>Elite</span>
+<span class="el-tag el-tag--blue"><span class="el-tag__dot"></span>Team of 2 to 4</span>
+<span class="el-tag el-tag--gold"><span class="el-tag__dot"></span>2011 drop table</span>
+</div>
+<p style="margin-top:20px;max-width:70ch;color:#A4B3C9;font-size:17px;line-height:1.65">Four phases, one prayer switch per phase, and a blood sacrifice that will kill anyone standing still. Duo is the sweet spot: fast enough for 12 kills an hour, slow enough that one death does not end the trip.</p>
+<div class="el-callout el-callout--danger" style="margin-top:20px"><span class="el-callout__icon" style="width:18px;height:18px;background:currentColor;-webkit-mask:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M12%2016h.01%22%2F%3E%3Cpath%20d%3D%22M12%208v4%22%2F%3E%3Cpath%20d%3D%22M15.312%202a2%202%200%200%201%201.414.586l4.688%204.688A2%202%200%200%201%2022%208.688v6.624a2%202%200%200%201-.586%201.414l-4.688%204.688a2%202%200%200%201-1.414.586H8.688a2%202%200%200%201-1.414-.586l-4.688-4.688A2%202%200%200%201%202%2015.312V8.688a2%202%200%200%201%20.586-1.414l4.688-4.688A2%202%200%200%201%208.688%202z%22%2F%3E%3C%2Fsvg%3E) center/contain no-repeat;mask:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M12%2016h.01%22%2F%3E%3Cpath%20d%3D%22M12%208v4%22%2F%3E%3Cpath%20d%3D%22M15.312%202a2%202%200%200%201%201.414.586l4.688%204.688A2%202%200%200%201%2022%208.688v6.624a2%202%200%200%201-.586%201.414l-4.688%204.688a2%202%200%200%201-1.414.586H8.688a2%202%200%200%201-1.414-.586l-4.688-4.688A2%202%200%200%201%202%2015.312V8.688a2%202%200%200%201%20.586-1.414l4.688-4.688A2%202%200%200%201%208.688%202z%22%2F%3E%3C%2Fsvg%3E) center/contain no-repeat"></span><div><p class="el-callout__title">Hardcore</p><div class="el-callout__body">Death inside the prison is permanent and the gravestone does not spawn. Bank your gear before you enter.</div></div></div>
+</div>
+<aside class="el-infobox">
+<div class="el-infobox__head"><span class="el-infobox__kind">[ Boss ]</span><div class="el-infobox__title">Nex</div></div>
+<div class="el-infobox__media el-infobox__media--empty"></div>
+<dl class="el-infobox__rows">
+<dt>Combat</dt><dd>1001</dd>
+<dt>Hitpoints</dt><dd>5000</dd>
+<dt>Weakness</dt><dd>Magic</dd>
+<dt>Killcount</dt><dd>40 any GWD</dd>
+<dt>Revision</dt><dd>2011</dd>
+</dl>
+<div class="el-infobox__foot"><span class="el-tag el-tag--mega-rare"><span class="el-tag__dot"></span>Torva 1/860</span><span class="el-badge el-badge--gold">Duo</span></div>
+</aside>
+</div>
+
+<h2 style="font-family:'Cinzel',Georgia,serif;font-size:34px;font-weight:700;letter-spacing:0.04em;margin:48px 0 0">The fight</h2>
+<ol class="el-steps" style="margin-top:20px">
+<li class="el-steps__item"><div><h4 class="el-steps__title">Smash the ice barrier</h4><div class="el-steps__body"><p>Four minions guard the entrance. Kill the mage first, she heals the rest.</p></div></div></li>
+<li class="el-steps__item"><div><h4 class="el-steps__title">Phase one: Smoke</h4><div class="el-steps__body"><p>Protect from Missiles. Stay out of the smoke cloud; it drains Prayer twice as fast as the hit itself.</p></div></div></li>
+<li class="el-steps__item"><div><h4 class="el-steps__title">Phase two: Shadow</h4><div class="el-steps__body"><p>Protect from Melee and keep moving. She marks a target with a blood sacrifice every 20 seconds.</p></div></div></li>
+<li class="el-steps__item"><div><h4 class="el-steps__title">Phase three: Blood</h4><div class="el-steps__body"><p>Kill the blood reaver before the heal lands. Ranged only, since melee pulls the reaver onto your partner.</p></div></div></li>
+<li class="el-steps__item"><div><h4 class="el-steps__title">Phase four: Ice</h4><div class="el-steps__body"><p>Protect from Magic. Break the ice prison on your partner immediately or they take the full special.</p></div></div></li>
+</ol>
+
+<h2 style="font-family:'Cinzel',Georgia,serif;font-size:34px;font-weight:700;letter-spacing:0.04em;margin:48px 0 0">Recommended setup</h2>
+<p style="margin-top:12px;max-width:70ch;color:#A4B3C9;font-size:17px;line-height:1.65">Bring brews over food, the damage comes in bursts. A ring of life is worth the slot on your first ten kills.</p>
+<div class="el-preset" style="margin-top:20px">
+<div class="el-preset__col"><span class="el-preset__label">[ Gear ]</span>
+<div class="el-grid el-grid--gear">
+<div class="el-slot" data-tip="Torva full helm"></div><div class="el-slot" data-tip="Amulet of fury"></div><div class="el-slot" data-tip="Zaryte bow"></div><div class="el-slot" data-tip="Torva platebody"></div>
+<div class="el-slot" data-tip="Elysian spirit shield"></div><div class="el-slot el-slot--empty"></div><div class="el-slot" data-tip="Torva platelegs"></div><div class="el-slot" data-tip="Barrows gloves"></div>
+<div class="el-slot" data-tip="Primordial boots"></div><div class="el-slot" data-tip="Ring of life"></div><div class="el-slot el-slot--empty"></div><div class="el-slot" data-tip="Ava device"></div>
+</div></div>
+<div class="el-preset__col"><span class="el-preset__label">[ Inventory ]</span>
+<div class="el-grid el-grid--inv">
+<div class="el-slot" data-tip="Saradomin brew"><span class="el-slot__qty">6</span></div><div class="el-slot" data-tip="Super restore"><span class="el-slot__qty">4</span></div><div class="el-slot" data-tip="Ranging potion"><span class="el-slot__qty">2</span></div><div class="el-slot" data-tip="Shark"><span class="el-slot__qty">3</span></div>
+<div class="el-slot" data-tip="Rune pouch"></div><div class="el-slot" data-tip="Zaryte bow"></div><div class="el-slot el-slot--empty"></div><div class="el-slot el-slot--empty"></div>
+<div class="el-slot el-slot--empty"></div><div class="el-slot el-slot--empty"></div><div class="el-slot el-slot--empty"></div><div class="el-slot el-slot--empty"></div>
+<div class="el-slot el-slot--empty"></div><div class="el-slot el-slot--empty"></div><div class="el-slot el-slot--empty"></div><div class="el-slot el-slot--empty"></div>
+<div class="el-slot el-slot--empty"></div><div class="el-slot el-slot--empty"></div><div class="el-slot el-slot--empty"></div><div class="el-slot el-slot--empty"></div>
+<div class="el-slot el-slot--empty"></div><div class="el-slot el-slot--empty"></div><div class="el-slot el-slot--empty"></div><div class="el-slot el-slot--empty"></div>
+<div class="el-slot el-slot--empty"></div><div class="el-slot el-slot--empty"></div><div class="el-slot el-slot--empty"></div><div class="el-slot el-slot--empty"></div>
+</div></div>
+</div>
+
+<sc-if value="{{ showDropTable }}" hint-placeholder-val="{{ true }}">
+<h2 style="font-family:'Cinzel',Georgia,serif;font-size:34px;font-weight:700;letter-spacing:0.04em;margin:48px 0 0">Drop table</h2>
+<div class="el-table-wrap" style="margin-top:20px;--el-table-max:340px">
+<table class="el-table">
+<caption>[ Nex, 2011 drop table per kill ]</caption>
+<thead><tr><th scope="col">Item</th><th scope="col" class="num">Qty</th><th scope="col" class="num">Rate</th></tr></thead>
+<tbody>
+<tr><td>Blood rune</td><td class="num">120 – 240</td><td class="rate rate--common">1/3</td></tr>
+<tr><td>Death rune</td><td class="num">80 – 150</td><td class="rate rate--common">1/3</td></tr>
+<tr><td>Zarosian insignia</td><td class="num">1</td><td class="rate rate--uncommon">1/24</td></tr>
+<tr><td>Ancient emblem</td><td class="num">1</td><td class="rate rate--uncommon">1/86</td></tr>
+<tr><td>Virtus mask</td><td class="num">1</td><td class="rate rate--rare">1/645</td></tr>
+<tr><td>Nexling</td><td class="num">1</td><td class="rate rate--very-rare">1/500</td></tr>
+<tr><td>Torva platebody</td><td class="num">1</td><td class="rate rate--mega-rare">1/860</td></tr>
+<tr><td>Zaryte bow</td><td class="num">1</td><td class="rate rate--mega-rare">1/1200</td></tr>
+</tbody>
+</table>
+</div>
+</sc-if>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:48px">
+<div class="el-embed"><div class="el-embed__frame"><div class="el-embed__placeholder"><span class="el-label">[ video pending ]</span></div></div><div class="el-embed__caption">[ Nex duo, full run ]</div></div>
+<figure class="el-figure"><div class="el-figure__media el-figure__media--empty"></div><figcaption class="el-figure__caption">[ Ancient prison, north entry ]</figcaption></figure>
+</div>
+
+<div style="margin-top:32px">
+<details class="el-acc"><summary class="el-acc__summary"><span>Solo method</span><span class="el-acc__tag">[ Advanced ]</span></summary><div class="el-acc__body"><p>Possible from Ranged 95 with a Zaryte bow and a full inventory of brews. Expect eight minutes a kill and no room for a mistake on the blood phase.</p></div></details>
+<details class="el-acc"><summary class="el-acc__summary"><span>Min-cash setup</span><span class="el-acc__tag">[ Optional ]</span></summary><div class="el-acc__body"><p>Karil top and skirt, rune crossbow, broad bolts. Slower, but nothing in the setup is worth losing.</p></div></details>
+</div>
+</div>
+</div>
+<footer class="el-footer"><div class="el-footer__inner">
+<img src="../../assets/elorin-logo.png" alt="Elorin" style="height:44px">
+<nav class="el-nav el-footer__nav" aria-label="Footer"><a class="el-nav__link" href="#">Guides</a><a class="el-nav__link" href="#">Discord</a><a class="el-nav__link" href="#">Vote</a><a class="el-nav__link" href="#">Rules</a></nav>
+<p class="el-footer__legal">[ not affiliated with jagex ltd ]</p>
+</div></footer>
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showSidebar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;showDropTable&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      showSidebar: this.props.showSidebar !== false,
+      showDropTable: this.props.showDropTable !== false,
+    };
+  }
+}
+
+</script>
+</body>
+</html>

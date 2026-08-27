@@ -1,0 +1,30 @@
+/* Elorin - radii, borders, elevation.
+   Elevation comes from border contrast and background lightness, not heavy shadow.
+   Nothing is rounded or bubbly; pills are for tags only. */
+:root {
+  --radius-chip: 2px;
+  --radius-card: 4px;
+  --radius-input: 4px;
+  --radius-button: 6px;
+  --radius-pill: 999px; /* tags only */
+
+  --border-w: 1px; /* @kind spacing */
+  --border: 1px solid var(--border-subtle); /* @kind other */
+  --border-hover: 1px solid var(--border-strong); /* @kind other */
+  --border-accent: 1px solid var(--border-gold-soft); /* @kind other */
+  /* --accent-bar-w is the callout left accent */
+  --accent-bar-w: 3px; /* @kind spacing */
+
+  /* Bevel: 1px inner highlight at 4% white, faking a lit top edge */
+  --bevel: inset 0 1px 0 var(--veil-4); /* @kind shadow */
+  --bevel-strong: inset 0 1px 0 var(--veil-10); /* @kind shadow */
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-raised: 0 6px 20px -8px rgba(0, 0, 0, 0.6);
+  --shadow-overlay: 0 24px 64px -16px rgba(0, 0, 0, 0.75);
+  --glow-gold: 0 0 0 1px rgba(200, 164, 90, 0.22), 0 0 18px -4px rgba(200, 164, 90, 0.28); /* @kind shadow */
+  --glow-gold-strong: 0 0 0 1px rgba(232, 200, 133, 0.40), 0 0 28px -6px rgba(232, 200, 133, 0.38); /* @kind shadow */
+
+  --focus-ring-w: 2px; /* @kind spacing */
+  --focus-ring-offset: 2px; /* @kind spacing */
+}

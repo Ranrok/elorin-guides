@@ -1,0 +1,32 @@
+/* Elorin - spacing, sizing, layout. 4px base grid. */
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* Section rhythm - generous negative space is part of the brand */
+  --section-y: clamp(56px, 9vw, 128px); /* @kind spacing */
+  --gutter: clamp(16px, 4vw, 40px); /* @kind spacing */
+
+  /* Controls - 44px minimum touch target, everywhere */
+  --control-h: 44px;
+  --control-h-lg: 52px;
+  --control-h-sm: 36px; /* desktop-only dense UI; never the sole tap target */
+  --hit-min: 44px;
+
+  /* Fixtures */
+  --header-h: 68px;
+  --progress-header-h: 56px;
+  --sidebar-w: 264px;
+  --slot: 48px; /* gear / inventory cell */
+}

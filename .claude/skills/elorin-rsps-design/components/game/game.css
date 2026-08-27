@@ -1,0 +1,25 @@
+/* Elorin - game surfaces: item chip, gear preset grid, inventory grid */
+
+/* ---------- Item chip (inline in prose) ---------- */
+.el-item { display: inline-flex; align-items: center; gap: 6px; padding: 2px 8px 2px 4px; border: var(--border); border-radius: var(--radius-chip); background: var(--surface-raised); box-shadow: var(--bevel); font-size: var(--fs-body-sm); line-height: 1.3; color: var(--text-primary); text-decoration: none; vertical-align: baseline; transition: var(--transition-colors); }
+a.el-item:hover { border-color: var(--border-gold); color: var(--gold-200); }
+.el-item__icon { width: 20px; height: 20px; flex: none; display: grid; place-items: center; background: var(--surface-sunken); box-shadow: inset 0 0 0 1px var(--border-subtle); }
+.el-item__icon img { width: 18px; height: 18px; object-fit: contain; }
+.el-item__icon::after { content: ""; width: 6px; height: 6px; background: var(--navy-500); transform: rotate(45deg); }
+.el-item__icon:has(img)::after { display: none; }
+.el-item__qty { font-family: var(--font-mono); font-size: var(--fs-label-sm); color: var(--gold-200); }
+
+/* ---------- Slot grids ---------- */
+.el-grid { display: grid; gap: var(--space-2); width: max-content; }
+.el-grid--gear { grid-template-columns: repeat(4, var(--slot)); }
+.el-grid--inv { grid-template-columns: repeat(4, var(--slot)); }
+.el-slot { position: relative; width: var(--slot); height: var(--slot); display: grid; place-items: center; border: 1px solid var(--border-subtle); border-radius: var(--radius-chip); background-color: var(--surface-sunken); background-image: var(--grad-card); box-shadow: var(--bevel); transition: var(--transition-colors); }
+.el-slot img { width: 34px; height: 34px; object-fit: contain; }
+.el-slot--empty::after { content: ""; width: 8px; height: 8px; background: var(--navy-600); transform: rotate(45deg); }
+.el-slot:hover { border-color: var(--border-gold); box-shadow: var(--bevel), var(--glow-gold); z-index: 2; }
+.el-slot__qty { position: absolute; top: 2px; left: 3px; font-family: var(--font-mono); font-size: 10px; color: var(--gold-200); text-shadow: 0 1px 2px #000; }
+/* Hover tooltip - pure CSS, driven by data-tip */
+.el-slot[data-tip]:hover::before { content: attr(data-tip); position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); z-index: 5; padding: 5px 9px; border: 1px solid var(--border-strong); border-radius: var(--radius-chip); background: var(--navy-700); box-shadow: var(--shadow-raised); font-family: var(--font-mono); font-size: var(--fs-label-sm); letter-spacing: 0.06em; color: var(--text-primary); white-space: nowrap; pointer-events: none; }
+.el-preset { display: flex; flex-wrap: wrap; gap: var(--space-8); }
+.el-preset__col { display: flex; flex-direction: column; gap: var(--space-3); }
+.el-preset__label { font-family: var(--font-mono); font-size: var(--fs-label-sm); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--text-muted); }

@@ -1,0 +1,45 @@
+/* Elorin - element defaults. Dark only. */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background-color: var(--bg-page);
+  background-image: var(--grad-page);
+  background-repeat: no-repeat;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--fw-display);
+  letter-spacing: var(--ls-heading);
+  line-height: var(--lh-heading);
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+h4 { font-size: var(--fs-h4); }
+p { margin: 0 0 1em; color: var(--text-secondary); }
+p:last-child { margin-bottom: 0; }
+strong, b { color: var(--text-primary); font-weight: var(--fw-body-medium); }
+a { color: var(--text-link); text-decoration: none; border-bottom: 1px solid rgba(127, 178, 229, 0.32); transition: var(--transition-colors); }
+a:hover { color: var(--text-link-hover); border-bottom-color: var(--border-gold-soft); }
+code, kbd, samp { font-family: var(--font-mono); font-size: 0.88em; color: var(--text-primary); background: var(--surface-raised); border: var(--border); border-radius: var(--radius-chip); padding: 0.1em 0.36em; }
+hr { border: 0; height: 1px; background: var(--grad-rule); margin: var(--space-8) 0; }
+img, svg { display: block; max-width: 100%; }
+ul, ol { color: var(--text-secondary); }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: var(--focus-ring-w) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); border-radius: 2px; }
+::selection { background: rgba(200, 164, 90, 0.28); color: var(--gold-100); }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--surface-sunken); }
+::-webkit-scrollbar-thumb { background: var(--navy-600); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: var(--navy-500); }

@@ -1,0 +1,70 @@
+/* Elorin - checklist: progress bar, sticky progress header, section card, checklist item */
+
+/* ---------- Progress bar ---------- */
+.el-progress { display: flex; flex-direction: column; gap: var(--space-2); }
+.el-progress__track { position: relative; height: 6px; border-radius: 2px; background: var(--surface-sunken); box-shadow: inset 0 0 0 1px var(--border-subtle); overflow: hidden; }
+.el-progress--thin .el-progress__track { height: 4px; }
+.el-progress__fill { height: 100%; background-image: var(--grad-progress); box-shadow: 0 0 12px -2px rgba(232, 200, 133, 0.55); transition: width var(--dur-slow) var(--ease); }
+.el-progress__meta { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); font-family: var(--font-mono); font-size: var(--fs-label-sm); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--text-muted); }
+.el-progress__count { color: var(--text-gold); }
+.el-progress--done .el-progress__count { color: var(--state-success); }
+
+/* ---------- Sticky overall progress header ---------- */
+.el-phead { position: sticky; top: 0; z-index: 30; background: rgba(10, 16, 30, 0.86); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-subtle); box-shadow: var(--bevel), 0 10px 24px -20px #000; }
+.el-phead__inner { display: flex; align-items: center; gap: var(--space-5); max-width: var(--measure-page); margin-inline: auto; padding: var(--space-3) var(--gutter); min-height: var(--progress-header-h); }
+.el-phead__title { font-family: var(--font-display); font-size: 16px; letter-spacing: var(--ls-heading); color: var(--text-primary); white-space: nowrap; }
+.el-phead__bar { flex: 1; min-width: 80px; }
+.el-phead__count { font-family: var(--font-mono); font-size: var(--fs-label); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--text-gold); white-space: nowrap; }
+@media (max-width: 640px) {
+  .el-phead__inner { flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding-block: var(--space-3); }
+  .el-phead__bar { flex-basis: 100%; order: 3; }
+}
+
+/* ---------- Section card ---------- */
+.el-section { background-color: var(--surface-card); background-image: var(--grad-card); border: var(--border); border-radius: var(--radius-card); box-shadow: var(--bevel), var(--shadow-card); }
+.el-section__head { display: grid; grid-template-columns: 1fr auto; gap: var(--space-2) var(--space-4); align-items: center; padding: var(--space-5) var(--space-5) var(--space-4); border-bottom: 1px solid var(--border-subtle); }
+.el-section__label { grid-column: 1 / -1; font-family: var(--font-mono); font-size: var(--fs-label-sm); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--text-muted); }
+.el-section__title { font-family: var(--font-display); font-size: 22px; font-weight: var(--fw-display); letter-spacing: var(--ls-heading); color: var(--text-primary); }
+.el-section__ratio { font-family: var(--font-mono); font-size: var(--fs-label); letter-spacing: 0.1em; color: var(--text-gold); }
+.el-section__bar { grid-column: 1 / -1; }
+.el-section__desc { grid-column: 1 / -1; margin: 0; font-size: var(--fs-body-sm); color: var(--text-secondary); }
+.el-section__body { display: flex; flex-direction: column; }
+.el-section--complete { border-color: var(--border-gold-soft); }
+.el-section--complete .el-section__ratio { color: var(--state-success); }
+
+/* ---------- Checklist item ---------- */
+.el-check { display: grid; grid-template-columns: 26px 1fr; column-gap: var(--space-4); align-items: start; padding: var(--space-4) var(--space-5); border-bottom: 1px solid var(--border-subtle); transition: background-color var(--dur) var(--ease); }
+.el-check:last-child { border-bottom: 0; }
+.el-check:hover { background: var(--veil-2); }
+.el-check__box { position: relative; grid-row: 1 / span 3; display: grid; place-items: center; width: 26px; height: 26px; margin-top: 1px; padding: 0; border: 1px solid var(--border-strong); border-radius: var(--radius-input); background: var(--surface-raised); box-shadow: var(--bevel); cursor: pointer; transition: var(--transition-colors); }
+/* 44px tap target without a 44px box */
+.el-check__box::before { content: ""; position: absolute; inset: -9px; }
+.el-check__box:hover { border-color: var(--border-gold); }
+.el-check__mark { width: 11px; height: 11px; transform: rotate(45deg) scale(0.4); opacity: 0; background-image: var(--metal-gold); transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease); }
+.el-check__box[aria-checked="true"] { border-color: var(--border-gold); background: rgba(200, 164, 90, 0.10); box-shadow: var(--bevel), var(--glow-gold); }
+.el-check__box[aria-checked="true"] .el-check__mark { transform: rotate(45deg) scale(1); opacity: 1; }
+/* Static-HTML variant: a real checkbox, styled identically to the button box.
+   Works with JS off - :checked and :has() carry the completed state. */
+.el-check__input { position: relative; grid-row: 1 / span 3; appearance: none; -webkit-appearance: none; display: grid; place-items: center; width: 26px; height: 26px; margin: 1px 0 0; padding: 0; border: 1px solid var(--border-strong); border-radius: var(--radius-input); background: var(--surface-raised); box-shadow: var(--bevel); cursor: pointer; transition: var(--transition-colors); }
+.el-check__input::before { content: ""; position: absolute; inset: -9px; }
+.el-check__input::after { content: ""; width: 11px; height: 11px; transform: rotate(45deg) scale(0.4); opacity: 0; background-image: var(--metal-gold); transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease); }
+.el-check__input:hover { border-color: var(--border-gold); }
+.el-check__input:checked { border-color: var(--border-gold); background: rgba(200, 164, 90, 0.10); box-shadow: var(--bevel), var(--glow-gold); }
+.el-check__input:checked::after { transform: rotate(45deg) scale(1); opacity: 1; }
+.el-check:has(.el-check__input:checked) .el-check__label { color: var(--text-dim); }
+.el-check:has(.el-check__input:checked) .el-check__title { text-decoration: line-through; text-decoration-color: var(--gold-600); text-decoration-thickness: 1px; }
+.el-check:has(.el-check__input:checked) .el-check__desc, .el-check:has(.el-check__input:checked) .el-check__subs li { color: var(--text-dim); }
+.el-check__label { display: block; min-height: 24px; padding: 0; font-size: 16px; font-weight: var(--fw-body-medium); line-height: 1.4; color: var(--text-primary); cursor: pointer; }
+.el-check__title { display: inline; }
+.el-check__desc { margin: 4px 0 0; font-size: var(--fs-body-sm); line-height: 1.5; color: var(--text-secondary); }
+.el-check__meta { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-3); }
+.el-check__subs { margin: var(--space-3) 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.el-check__subs li { display: grid; grid-template-columns: 10px 1fr; gap: var(--space-3); align-items: baseline; font-size: var(--fs-body-sm); color: var(--text-secondary); }
+.el-check__subs li::before { content: ""; width: 5px; height: 5px; margin-top: 7px; background: var(--gold-400); transform: rotate(45deg); }
+/* Completed: gold is never the only signal - the title also strikes and dims */
+.el-check--done .el-check__label { color: var(--text-dim); }
+.el-check--done .el-check__title { text-decoration: line-through; text-decoration-color: var(--gold-600); text-decoration-thickness: 1px; }
+.el-check--done .el-check__desc, .el-check--done .el-check__subs li { color: var(--text-dim); }
+@media (max-width: 480px) {
+  .el-check { padding: var(--space-4); column-gap: var(--space-3); }
+}

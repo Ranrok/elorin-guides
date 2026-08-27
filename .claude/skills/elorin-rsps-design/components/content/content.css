@@ -1,0 +1,25 @@
+/* Elorin - content: numbered step list, accordion */
+
+/* ---------- Step list ---------- */
+.el-steps { margin: 0; padding: 0; list-style: none; counter-reset: el-step; display: flex; flex-direction: column; }
+.el-steps__item { position: relative; counter-increment: el-step; display: grid; grid-template-columns: 30px 1fr; column-gap: var(--space-4); padding-bottom: var(--space-6); }
+.el-steps__item:last-child { padding-bottom: 0; }
+.el-steps__item::before { content: counter(el-step, decimal-leading-zero); display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid var(--border-gold-soft); border-radius: var(--radius-chip); background: var(--surface-raised); box-shadow: var(--bevel); font-family: var(--font-mono); font-size: var(--fs-label); color: var(--text-gold); }
+.el-steps__item:not(:last-child)::after { content: ""; position: absolute; left: 15px; top: 36px; bottom: 6px; width: 1px; background: linear-gradient(180deg, var(--border-gold-soft), var(--border-subtle)); }
+.el-steps__title { margin: 4px 0 0; font-family: var(--font-display); font-size: var(--fs-h4); letter-spacing: var(--ls-heading); color: var(--text-primary); }
+.el-steps__body { margin-top: var(--space-2); font-size: var(--fs-body-sm); line-height: 1.6; color: var(--text-secondary); }
+.el-steps__body > :last-child { margin-bottom: 0; }
+
+/* ---------- Accordion ---------- */
+.el-acc { border: var(--border); border-radius: var(--radius-card); background-color: var(--surface-card); background-image: var(--grad-card); box-shadow: var(--bevel); }
+.el-acc + .el-acc { margin-top: var(--space-3); }
+.el-acc__summary { display: flex; align-items: center; gap: var(--space-3); min-height: var(--control-h); padding: var(--space-3) var(--space-5); cursor: pointer; list-style: none; font-family: var(--font-display); font-size: 16px; letter-spacing: var(--ls-heading); color: var(--text-primary); transition: var(--transition-colors); }
+.el-acc__summary::-webkit-details-marker { display: none; }
+.el-acc__summary:hover { color: var(--text-gold); }
+.el-acc__chev { margin-left: auto; font-size: 16px; color: var(--text-muted); transition: transform var(--dur) var(--ease), color var(--dur) var(--ease); }
+.el-acc__summary:hover .el-acc__chev { color: var(--text-gold); }
+.el-acc[open] > .el-acc__summary { border-bottom: 1px solid var(--border-subtle); }
+.el-acc[open] > .el-acc__summary .el-acc__chev { transform: rotate(180deg); }
+.el-acc__tag { font-family: var(--font-mono); font-size: var(--fs-label-sm); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--text-muted); }
+.el-acc__body { padding: var(--space-5); font-size: var(--fs-body-sm); line-height: 1.65; color: var(--text-secondary); }
+.el-acc__body > :last-child { margin-bottom: 0; }

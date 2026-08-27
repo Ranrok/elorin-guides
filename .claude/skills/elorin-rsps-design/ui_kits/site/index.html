@@ -1,0 +1,38 @@
+<!-- @dsCard group="Elorin Site" viewport="1280x900" name="Homepage" subtitle="elorin.org hero, countdown and feature cards - approximated from the screenshot" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elorin RSPS - UI kit</title>
+<link rel="icon" href="../../assets/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="../../styles.css">
+<style>#root{position:relative;z-index:1}</style>
+</head><body>
+<div class="el-ridge"></div>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel" src="HomeScreen.jsx"></script>
+<script type="text/babel">
+const { SiteHeader, SiteFooter, Button } = window.ElorinRSPSDesignSystem_44a46d;
+function App() {
+  return (
+    <>
+      <SiteHeader
+        items={[{label:'Home',href:'#'},{label:'Discord',href:'#'},{label:'Vote',href:'#'},{label:'Download',href:'#'}]}
+        active="Home"
+        logoSrc="../../assets/elorin-logo.png"
+        actions={<>
+          <Button variant="outline" size="sm" flourishes={false}>Account</Button>
+          <Button variant="outline" size="sm" flourishes={false}>Logout</Button>
+        </>}
+      />
+      <HomeScreen />
+      <SiteFooter items={[{label:'Discord',href:'#'},{label:'Vote',href:'#'},{label:'Guides',href:'#'},{label:'Rules',href:'#'}]} logoSrc="../../assets/elorin-logo.png" />
+    </>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body></html>

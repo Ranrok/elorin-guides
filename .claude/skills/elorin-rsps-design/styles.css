@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+@import 'tokens/fonts.css';
+@import 'tokens/colors.css';
+@import 'tokens/typography.css';
+@import 'tokens/spacing.css';
+@import 'tokens/shape.css';
+@import 'tokens/motion.css';
+@import 'tokens/gradients.css';
+@import 'base/reset.css';
+@import 'base/utilities.css';
+@import 'components/components.css';
