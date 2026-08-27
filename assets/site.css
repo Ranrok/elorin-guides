@@ -70,13 +70,28 @@
   vertical-align: 1px;
 }
 
+/* One padded wrapper per tips card, holding the bullets and any table or
+   image. Putting the gutter here rather than on each piece keeps them aligned
+   whichever combination a card has. */
+.tips-body {
+  display: grid;
+  gap: var(--space-5);
+  padding: var(--space-5);
+}
+
 /* The tips list reuses the design system's diamond-bulleted list. It sits
-   directly in a section body rather than inside a checklist row, so it needs
-   its own padding and a little more room between full sentences. */
+   directly in a card body rather than inside a checklist row, so it drops the
+   list's own margin and takes a little more room between full sentences. */
 .tips-list {
   margin: 0;
-  padding: var(--space-5);
+  padding: 0;
   gap: var(--space-3);
+}
+
+/* Never upscale a screenshot past its own pixels - it only gets blurrier. */
+.tips-figure {
+  width: 100%;
+  max-width: 760px;
 }
 
 /* The system's list baseline-aligns the bullet, which drifts against the first

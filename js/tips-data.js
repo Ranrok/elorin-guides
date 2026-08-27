@@ -28,6 +28,37 @@
    Never put HTML in a text string. It is escaped, not parsed, so tags would
    show up literally on the page rather than doing anything.
 
+   OPTIONAL EXTRAS
+
+   A skill can also carry a table, bullets that sit below that table, and an
+   image. All three are optional - leave them out for a normal card. They
+   render in this order:
+
+       points  ->  table  ->  after  ->  figure
+
+     table: {
+       caption: "Overload ingredients",           // optional mono line on top
+       head:    ["Potion", "Level", "What it takes"],   // column headings
+       rows: [                                    // one array per row, each
+         ["Super attack", "45", "Clean irit + eye of newt"],   // the same
+         ["Overload", "96", "All five extremes (3) + torstol"] // length as head
+       ]
+     }
+
+     after: [                        // more bullets, rendered under the table.
+       { text: "A footnote to the table above." }   // same shape as points.
+     ]
+
+     figure: {
+       src:     "assets/some-chart.png",  // relative path, always
+       alt:     "What the image shows, for screen readers and if it fails",
+       caption: "Optional line under the image"
+     }
+
+   Images live in assets/ and are referenced with a relative path - never a
+   leading slash, or they break on GitHub Pages. The image is capped at its
+   own natural width so it never upscales into a blur.
+
    Nothing on this page is saved or ticked, so there are no ids to keep stable
    here. Add, delete and reorder freely.
 
@@ -199,11 +230,31 @@ const TIPS = [
     ]
   },
 
-  /* Left empty on purpose - replace the TBC point with the real ones. */
+  /* Recipes and levels below are checked against the RS3 wiki. */
   {
     skill: "Miscellaneous",
     points: [
-      { text: "TBC" }
+      { text: "Below is everything an overload needs. Make the super potion first, turn that into the extreme, then combine all five extremes with a clean torstol. Every super potion is its herb plus the secondary in a vial of water." }
+    ],
+    table: {
+      caption: "Overload ingredients",
+      head: ["Potion", "Level", "What it takes"],
+      rows: [
+        ["Super attack", "45", "Clean irit + eye of newt"],
+        ["Extreme attack", "88", "Super attack (3) + clean avantoe"],
+        ["Super strength", "55", "Clean kwuarm + limpwurt root"],
+        ["Extreme strength", "89", "Super strength (3) + clean dwarf weed"],
+        ["Super defence", "66", "Clean cadantine + white berries"],
+        ["Extreme defence", "90", "Super defence (3) + clean lantadyme"],
+        ["Super magic", "76", "Clean lantadyme + potato cactus"],
+        ["Extreme magic", "91", "Super magic (3) + ground mud runes"],
+        ["Super ranging", "72", "Dwarf weed (unf) + wine of Zamorak"],
+        ["Extreme ranging", "92", "Super ranging (3) + grenwall spikes"],
+        ["Overload", "96", "All five extremes (3) + clean torstol"]
+      ]
+    },
+    after: [
+      { text: "For a holy overload you need an overload (4) and a prayer renewal (4), combined in a crystal flask at 97 Herblore. A prayer renewal is clean fellstalk plus a morchella mushroom, at 94." }
     ]
   }
 ];

@@ -283,20 +283,86 @@
       card.appendChild(head);
 
       var body = make("div", "el-section__body");
-      var list = make("ul", "el-check__subs tips-list");
+      /* One padded wrapper holds the bullets, the table and the image, so they
+         all share a gutter no matter which of them a card actually has. */
+      var inner = make("div", "tips-body");
 
-      /* Every point renders the same. There is no emphasis treatment - one
-         line in a different colour reads as a mistake, not as a signal. */
-      points.forEach(function (point) {
-        var item = make("li");
-        item.appendChild(make("span", null, point.text));
-        list.appendChild(item);
-      });
+      /* points sit above the table, after sits below it. */
+      if (points.length) inner.appendChild(tipsList(points));
+      if (entry.table) inner.appendChild(tipsTable(entry.table));
+      if (entry.after && entry.after.length) inner.appendChild(tipsList(entry.after));
+      if (entry.figure) inner.appendChild(tipsFigure(entry.figure));
 
-      body.appendChild(list);
+      body.appendChild(inner);
       card.appendChild(body);
       mount.appendChild(card);
     });
+  }
+
+  /* A bulleted list of points. Every point renders the same - there is no
+     emphasis treatment, since one line in a different colour reads as a
+     mistake rather than as a signal. */
+  function tipsList(points) {
+    var list = make("ul", "el-check__subs tips-list");
+    points.forEach(function (point) {
+      var item = make("li");
+      item.appendChild(make("span", null, point.text));
+      list.appendChild(item);
+    });
+    return list;
+  }
+
+  /* Optional table on a tips card. Uses the design system's data table, which
+     brings the sticky head, zebra rows and hover with it. */
+  function tipsTable(spec) {
+    var wrap = make("div", "el-table-wrap");
+    var table = make("table", "el-table");
+
+    if (spec.caption) table.appendChild(make("caption", null, spec.caption));
+
+    var head = spec.head || [];
+    if (head.length) {
+      var thead = make("thead");
+      var hrow = make("tr");
+      head.forEach(function (label) {
+        var th = make("th", null, label);
+        th.setAttribute("scope", "col");
+        hrow.appendChild(th);
+      });
+      thead.appendChild(hrow);
+      table.appendChild(thead);
+    }
+
+    var tbody = make("tbody");
+    (spec.rows || []).forEach(function (cells) {
+      var tr = make("tr");
+      cells.forEach(function (cell) {
+        tr.appendChild(make("td", null, cell));
+      });
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+
+    wrap.appendChild(table);
+    return wrap;
+  }
+
+  /* Optional image on a tips card. src is always a relative path. */
+  function tipsFigure(spec) {
+    var fig = make("figure", "el-figure tips-figure");
+
+    var media = make("div", "el-figure__media");
+    var img = make("img");
+    img.src = spec.src;
+    img.alt = spec.alt || "";
+    img.loading = "lazy";
+    media.appendChild(img);
+    fig.appendChild(media);
+
+    if (spec.caption) {
+      fig.appendChild(make("figcaption", "el-figure__caption", spec.caption));
+    }
+    return fig;
   }
 
   /* ----------------------------------------------------------------- boot */
