@@ -16,6 +16,15 @@ and `js/app.js`, never `/assets/site.css`.
 
 **`.nojekyll` at the repo root stays.** Do not delete or edit it.
 
+**Bump `?v=` when you change a CSS or JS file.** GitHub Pages serves everything with
+`Cache-Control: max-age=600`, so a reader who already has the page cached keeps seeing
+the old content for up to ten minutes after a push. Both pages therefore load their
+local CSS and JS with a version query string - `js/roadmap-data.js?v=2`. Raise that
+number, in *both* `index.html` and `tips.html` at once so the two pages never disagree
+about which `app.js` they want, in the same commit as any change to `assets/elorin.css`,
+`assets/site.css`, `js/app.js`, `js/roadmap-data.js` or `js/tips-data.js`. A query
+string is still a relative path and still works from a double-clicked file.
+
 **Never reference anything inside `.claude/` from a page.** Assets are copied out into
 `assets/`.
 
