@@ -230,10 +230,19 @@ const TIPS = [
     ]
   },
 
+  {
+    skill: "Slayer",
+    points: [
+      { text: "Claim your Champion's Challenge scrolls before you start Slayer. They boost the skill straight off the bat." },
+      { text: "Have an xp book running when you claim them." }
+    ]
+  },
+
   /* Recipes and levels below are checked against the RS3 wiki. */
   {
     skill: "Miscellaneous",
     points: [
+      { text: "Buy the donator ring from the donator zone for 50m. It doubles your combat xp." },
       { text: "Below is everything an overload needs. Make the super potion first, turn that into the extreme, then combine all five extremes with a clean torstol. Every super potion is its herb plus the secondary in a vial of water." }
     ],
     table: {

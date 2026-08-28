@@ -89,6 +89,12 @@ const ROADMAP = [
         diary: ["easy"]
       },
       {
+        id: "ironman-cc",
+        text: "Join the ironman cc",
+        note: "We have a feeling they will pump their clan vault quite quickly, so it is worth being in there early.",
+        diary: []
+      },
+      {
         id: "pick-gamemode",
         text: "Pick your gamemode",
         note: "",
@@ -105,6 +111,12 @@ const ROADMAP = [
         text: "Type ::rules",
         note: "",
         diary: ["easy"]
+      },
+      {
+        id: "sacrifice-points",
+        text: "Check your sacrifice points and decide what to spend them on",
+        note: "You start with 15,000 of them.",
+        diary: []
       }
     ]
   },
@@ -155,7 +167,7 @@ const ROADMAP = [
       {
         id: "quest-books",
         text: "Check which quests you do not want to do",
-        note: "Use the quest books from the store if they stock them.",
+        note: "Use the quest books from the store if they stock them. Pick carefully what you auto complete - some of these give Hitpoints xp, which you do not want before Wintertodt.",
         diary: []
       }
     ]
@@ -174,8 +186,8 @@ const ROADMAP = [
       },
       {
         id: "cow-hide",
-        text: "Teleport to cows and kill a cow for its cowhide",
-        note: "This should not put your HP up much.",
+        text: "Teleport to cows, kill them with Magic until 21 Magic, and keep one cowhide",
+        note: "21 Magic is low alchemy. Killing them with spells should not put your HP up much either.",
         diary: []
       },
       {
@@ -235,7 +247,7 @@ const ROADMAP = [
       {
         id: "town-board",
         text: "Complete a town board task",
-        note: "",
+        note: "Turn challenging tasks on as soon as you are comfortable doing them.",
         diary: ["easy"]
       }
     ]
@@ -250,6 +262,12 @@ const ROADMAP = [
         id: "buy-supplies",
         text: "Buy your tools and supplies from the shops",
         note: "Everything you will need, plus any warm clothing for Wintertodt later.",
+        diary: []
+      },
+      {
+        id: "alch-stock",
+        text: "Buy a few thousand nature runes and a rune item to alch",
+        note: "Alch your way through the rest of the list rather than standing still for it.",
         diary: []
       },
       {
